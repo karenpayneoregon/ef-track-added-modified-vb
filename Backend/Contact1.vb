@@ -81,16 +81,6 @@ Partial Public Class Contact1
             OnPropertyChanged()
         End Set
     End Property
-    '<NotMapped()>
-    'Public Property IsDeleted As Boolean
-    '    Get
-    '        Return _isDeleted1
-    '    End Get
-    '    Set
-    '        _isDeleted1 = Value
-    '        OnPropertyChanged()
-    '    End Set
-    'End Property
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     Protected Overridable Sub OnPropertyChanged(<CallerMemberName> Optional memberName As String = Nothing)
