@@ -13,7 +13,7 @@ Partial Public Class Context
 
     Public Overridable Property Contact1 As DbSet(Of Contact1)
 
-    Protected Overrides Sub OnModelCreating(ByVal Builder As DbModelBuilder)
+    Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
     End Sub
     ''' <summary>
     ''' Responsible for setting created, last updated
