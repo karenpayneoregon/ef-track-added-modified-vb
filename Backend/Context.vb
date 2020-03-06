@@ -49,6 +49,39 @@ Partial Public Class Context
         Next
 
     End Sub
+    ''' <summary>
+    ''' Get primary key
+    ''' In order to retrieve the primary keys, we must cast our DbContext down to IObjectContextAdapter and query the ObjectStateManager.
+    ''' Once we have access to that manager, we can get the primary key value (note that this method assumes a single-column primary key,
+    ''' which is not necessarily a good real-world scenario).
+    ''' </summary>
+    ''' <param name="entry"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' Does not work for detached entry
+    ''' </remarks>
+    Private Function GetPrimaryKeyValue(entry As DbEntityEntry) As Object
+        Dim objectStateEntry = CType(Me, IObjectContextAdapter).ObjectContext.ObjectStateManager.GetObjectStateEntry(entry.Entity)
+        Return objectStateEntry.EntityKey.EntityKeyValues(0).Value
+    End Function
+    Public Sub Review()
+        ChangeTracker.DetectChanges()
+        For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
+            If currentEntry.State = EntityState.Added OrElse currentEntry.State = EntityState.Modified Then
+
+                For Each propertyName As String In currentEntry.CurrentValues.PropertyNames
+
+                    If currentEntry.OriginalValues(propertyName).ToString() <> currentEntry.CurrentValues(propertyName).ToString() Then
+                        Console.WriteLine($"ID: {GetPrimaryKeyValue(currentEntry)} Name {propertyName} Orig: {currentEntry.OriginalValues(propertyName)} Curr: {currentEntry.CurrentValues(propertyName)}")
+                    End If
+
+
+                Next
+
+            End If
+        Next
+
+    End Sub
 
     Public Overrides Function SaveChangesAsync() As Task(Of Integer)
 

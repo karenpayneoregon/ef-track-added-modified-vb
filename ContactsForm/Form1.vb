@@ -8,6 +8,9 @@ Imports ContactsForm.Modules
 ''' For testing only, this form will eventually be removed.
 ''' </summary>
 Public Class Form1
+    ''' <summary>
+    ''' AutoDetectChangesEnabled is true
+    ''' </summary>
     Private dbContext As New Context
     Private _bindingListContacts As New BindingList(Of Contact1)()
 
@@ -43,7 +46,6 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SaveCurrentButton_Click(sender As Object, e As EventArgs) Handles SaveCurrentButton.Click
-
         If (Not String.IsNullOrWhiteSpace(FirstNameEditTextBox.Text)) AndAlso (Not String.IsNullOrWhiteSpace(LastNameEditTextBox.Text)) Then
 
             Dim contact = _bindingListContacts(DataGridView1.CurrentRow.Index)
