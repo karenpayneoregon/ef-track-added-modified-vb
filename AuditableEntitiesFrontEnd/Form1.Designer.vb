@@ -29,7 +29,7 @@ Partial Class Form1
         '
         'AddConectButton
         '
-        Me.AddConectButton.Location = New System.Drawing.Point(30, 29)
+        Me.AddConectButton.Location = New System.Drawing.Point(12, 23)
         Me.AddConectButton.Name = "AddConectButton"
         Me.AddConectButton.Size = New System.Drawing.Size(186, 23)
         Me.AddConectButton.TabIndex = 0
@@ -38,7 +38,7 @@ Partial Class Form1
         '
         'EditFirstButton
         '
-        Me.EditFirstButton.Location = New System.Drawing.Point(30, 58)
+        Me.EditFirstButton.Location = New System.Drawing.Point(12, 52)
         Me.EditFirstButton.Name = "EditFirstButton"
         Me.EditFirstButton.Size = New System.Drawing.Size(186, 23)
         Me.EditFirstButton.TabIndex = 1
@@ -47,7 +47,7 @@ Partial Class Form1
         '
         'SoftDeleteButton
         '
-        Me.SoftDeleteButton.Location = New System.Drawing.Point(30, 87)
+        Me.SoftDeleteButton.Location = New System.Drawing.Point(12, 81)
         Me.SoftDeleteButton.Name = "SoftDeleteButton"
         Me.SoftDeleteButton.Size = New System.Drawing.Size(186, 23)
         Me.SoftDeleteButton.TabIndex = 2
@@ -58,7 +58,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(535, 181)
+        Me.ClientSize = New System.Drawing.Size(219, 137)
         Me.Controls.Add(Me.SoftDeleteButton)
         Me.Controls.Add(Me.EditFirstButton)
         Me.Controls.Add(Me.AddConectButton)

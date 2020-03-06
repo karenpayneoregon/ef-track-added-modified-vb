@@ -9,28 +9,8 @@ Partial Public Class Contact2
     Implements IFullAuditable(Of Integer)
 
     Public Property Id As Integer
-
     Public Property FirstName As String
-
     Public Property LastName As String
-
-    'Public Property IsDeleted As Boolean?
-
-    'Public Property CreatorUserId As Integer?
-
-    '<Column(TypeName:="datetime2")>
-    'Public Property CreatedUtc As Date?
-
-    'Public Property UpdaterUserId As Integer?
-
-    '<Column(TypeName:="datetime2")>
-    'Public Property UpdatedUtc As Date?
-
-    'Public Property DeleterUserId As Integer?
-
-    '<Column(TypeName:="datetime2")>
-    'Public Property DeletedUtc As Date?
-
     Public Property CreatedUtc As Date Implements ICreationTrackable.CreatedUtc
     Public Property UpdatedUtc As Date? Implements IModificationTrackable.UpdatedUtc
     Public Property IsDeleted As Boolean Implements ISoftDeletable.IsDeleted

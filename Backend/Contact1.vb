@@ -9,6 +9,7 @@ Imports System.Data.Entity.Spatial
 Partial Public Class Contact1
     Inherits BaseEntity
     Implements INotifyPropertyChanged
+
     Private _contactId As Integer
     Private _firstName As String
     Private _lastName As String
@@ -80,6 +81,12 @@ Partial Public Class Contact1
             _createdBy = Value
             OnPropertyChanged()
         End Set
+    End Property
+    <NotMapped()>
+    Public ReadOnly Property Display() As String
+        Get
+            Return $"{FirstName},{LastName}{Environment.NewLine}Updated: {LastUpdated} by: {LastUser}{Environment.NewLine}Created: {CreatedAt} by: {CreatedBy}"
+        End Get
     End Property
 
     Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
