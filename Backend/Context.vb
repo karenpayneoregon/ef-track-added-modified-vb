@@ -65,19 +65,16 @@ Partial Public Class Context
         Return objectStateEntry.EntityKey.EntityKeyValues(0).Value
     End Function
     Public Sub Review()
+
         ChangeTracker.DetectChanges()
+
         For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
             If currentEntry.State = EntityState.Added OrElse currentEntry.State = EntityState.Modified Then
-
                 For Each propertyName As String In currentEntry.CurrentValues.PropertyNames
-
                     If currentEntry.OriginalValues(propertyName).ToString() <> currentEntry.CurrentValues(propertyName).ToString() Then
                         Console.WriteLine($"ID: {GetPrimaryKeyValue(currentEntry)} Name {propertyName} Orig: {currentEntry.OriginalValues(propertyName)} Curr: {currentEntry.CurrentValues(propertyName)}")
                     End If
-
-
                 Next
-
             End If
         Next
 
