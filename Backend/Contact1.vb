@@ -1,10 +1,7 @@
-Imports System
-Imports System.Collections.Generic
 Imports System.ComponentModel
 Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Runtime.CompilerServices
-Imports System.Data.Entity.Spatial
 
 Partial Public Class Contact1
     Inherits BaseEntity
@@ -49,6 +46,7 @@ Partial Public Class Contact1
         End Set
     End Property
 
+#Region "This are only needed for immediate updates in the user interface"
     <Column(TypeName:="datetime2")>
     Public Overloads Property LastUpdated As Date?
         Get
@@ -82,15 +80,43 @@ Partial Public Class Contact1
             OnPropertyChanged()
         End Set
     End Property
+#End Region
+    ''' <summary>
+    ''' Provides a way to peek at properties
+    ''' in debug mode
+    ''' </summary>
+    ''' <returns></returns>
     <NotMapped()>
     Public ReadOnly Property Display() As String
         Get
-            Return $"{FirstName},{LastName}{Environment.NewLine}Updated: {LastUpdated} by: {LastUser}{Environment.NewLine}Created: {CreatedAt} by: {CreatedBy}"
+
+            Return _
+            $"{FirstName},{LastName}{Environment.NewLine}" &
+            $"Updated: {LastUpdated} " &
+            $"by: {LastUser}{Environment.NewLine}" &
+            $"Created: {CreatedAt} by: {CreatedBy}"
+
         End Get
     End Property
+    ''' <summary>
+    ''' Provides a default view
+    ''' </summary>
+    ''' <returns></returns>
+    Public Overrides Function ToString() As String
+        Return $"{FirstName},{LastName}"
+    End Function
 
-    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
-    Protected Overridable Sub OnPropertyChanged(<CallerMemberName> Optional memberName As String = Nothing)
+#Region "INotifyPropertyChanged implementation"
+
+    Public Event PropertyChanged As PropertyChangedEventHandler _
+        Implements INotifyPropertyChanged.PropertyChanged
+
+    Protected Overridable Sub OnPropertyChanged(
+        <CallerMemberName> Optional memberName As String = Nothing)
+
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(memberName))
+
     End Sub
+
+#End Region
 End Class
