@@ -8,7 +8,10 @@ Partial Public Class Context
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=Context")
+        MyBase.New("name=ContextKaren")
+    End Sub
+    Public Sub New(ConnectionString As String)
+        MyBase.New(ConnectionString)
     End Sub
 
     Public Overridable Property Contact1 As DbSet(Of Contact1)

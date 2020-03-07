@@ -15,6 +15,7 @@ Public Class Form1
     Private _bindingListContacts As New BindingList(Of Contact1)()
 
     Private Async Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        ' no filter
         'Dim contacts = Await dbContext.Contact1.ToListAsync()
         Dim activeContacts = dbContext.ApplyActiveFilter(dbContext.Contact1).ToList()
 
@@ -28,7 +29,7 @@ Public Class Form1
         DataGridView1.DataSource = _bindingListContacts
 
         '            
-        '             * Data bind all exists contacts
+        ' Data bind all exists contacts
         '             
         FirstNameEditTextBox.DataBindings.Add("Text", _bindingListContacts, "FirstName")
         LastNameEditTextBox.DataBindings.Add("Text", _bindingListContacts, "LastName")
@@ -65,7 +66,9 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub AddContactButton_Click(sender As Object, e As EventArgs) Handles AddContactButton.Click
+
         If (Not String.IsNullOrWhiteSpace(FirstNameNewTextBox.Text)) AndAlso (Not String.IsNullOrWhiteSpace(LastNameNewTextBox.Text)) Then
+
             Dim contact = New Contact1() With {.FirstName = FirstNameNewTextBox.Text, .LastName = LastNameNewTextBox.Text, .IsDeleted = False}
 
             dbContext.Contact1.Add(contact)
@@ -79,26 +82,13 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-
-
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Async Sub Button3_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
     Private Async Sub DeleteCurrentButton_Click(sender As Object, e As EventArgs) Handles DeleteCurrentButton.Click
         Dim contact = _bindingListContacts(DataGridView1.CurrentRow.Index)
 
         If Question($" Remove {contact.FirstName} {contact.LastName}?") Then
+
             dbContext.Entry(contact).State = EntityState.Deleted
             Dim affected = Await dbContext.SaveChangesAsync()
-            Console.WriteLine(affected)
             _bindingListContacts.Remove(contact)
 
         End If

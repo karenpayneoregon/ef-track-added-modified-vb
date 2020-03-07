@@ -23,6 +23,12 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.FirstNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastUpdatedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LastUpdatedByColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedAtColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreatedByColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FirstNameNewTextBox = New System.Windows.Forms.TextBox()
         Me.LastNameNewTextBox = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -30,18 +36,12 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.AddContactButton = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DeleteCurrentButton = New System.Windows.Forms.Button()
         Me.SaveCurrentButton = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.LastNameEditTextBox = New System.Windows.Forms.TextBox()
         Me.FirstNameEditTextBox = New System.Windows.Forms.TextBox()
-        Me.FirstNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastUpdatedColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LastUpdatedByColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CreatedAtColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CreatedByColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DeleteCurrentButton = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -58,13 +58,48 @@ Partial Class Form1
         Me.DataGridView1.Size = New System.Drawing.Size(696, 160)
         Me.DataGridView1.TabIndex = 3
         '
+        'FirstNameColumn
+        '
+        Me.FirstNameColumn.DataPropertyName = "FirstName"
+        Me.FirstNameColumn.HeaderText = "First"
+        Me.FirstNameColumn.Name = "FirstNameColumn"
+        '
+        'LastNameColumn
+        '
+        Me.LastNameColumn.DataPropertyName = "LastName"
+        Me.LastNameColumn.HeaderText = "Last"
+        Me.LastNameColumn.Name = "LastNameColumn"
+        '
+        'LastUpdatedColumn
+        '
+        Me.LastUpdatedColumn.DataPropertyName = "LastUpdated"
+        Me.LastUpdatedColumn.HeaderText = "Updated"
+        Me.LastUpdatedColumn.Name = "LastUpdatedColumn"
+        '
+        'LastUpdatedByColumn
+        '
+        Me.LastUpdatedByColumn.DataPropertyName = "LastUser"
+        Me.LastUpdatedByColumn.HeaderText = "By"
+        Me.LastUpdatedByColumn.Name = "LastUpdatedByColumn"
+        '
+        'CreatedAtColumn
+        '
+        Me.CreatedAtColumn.DataPropertyName = "CreatedAt"
+        Me.CreatedAtColumn.HeaderText = "Created"
+        Me.CreatedAtColumn.Name = "CreatedAtColumn"
+        '
+        'CreatedByColumn
+        '
+        Me.CreatedByColumn.DataPropertyName = "CreatedBy"
+        Me.CreatedByColumn.HeaderText = "By"
+        Me.CreatedByColumn.Name = "CreatedByColumn"
+        '
         'FirstNameNewTextBox
         '
         Me.FirstNameNewTextBox.Location = New System.Drawing.Point(96, 22)
         Me.FirstNameNewTextBox.Name = "FirstNameNewTextBox"
         Me.FirstNameNewTextBox.Size = New System.Drawing.Size(183, 20)
         Me.FirstNameNewTextBox.TabIndex = 4
-        Me.FirstNameNewTextBox.Text = "Hennie"
         '
         'LastNameNewTextBox
         '
@@ -72,7 +107,6 @@ Partial Class Form1
         Me.LastNameNewTextBox.Name = "LastNameNewTextBox"
         Me.LastNameNewTextBox.Size = New System.Drawing.Size(183, 20)
         Me.LastNameNewTextBox.TabIndex = 5
-        Me.LastNameNewTextBox.Text = "Lebow"
         '
         'Label1
         '
@@ -131,6 +165,16 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Edit current contact"
         '
+        'DeleteCurrentButton
+        '
+        Me.DeleteCurrentButton.Enabled = False
+        Me.DeleteCurrentButton.Location = New System.Drawing.Point(96, 103)
+        Me.DeleteCurrentButton.Name = "DeleteCurrentButton"
+        Me.DeleteCurrentButton.Size = New System.Drawing.Size(183, 23)
+        Me.DeleteCurrentButton.TabIndex = 10
+        Me.DeleteCurrentButton.Text = "Delete current"
+        Me.DeleteCurrentButton.UseVisualStyleBackColor = True
+        '
         'SaveCurrentButton
         '
         Me.SaveCurrentButton.Enabled = False
@@ -174,52 +218,6 @@ Partial Class Form1
         Me.FirstNameEditTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.FirstNameEditTextBox.Size = New System.Drawing.Size(183, 20)
         Me.FirstNameEditTextBox.TabIndex = 4
-        '
-        'FirstNameColumn
-        '
-        Me.FirstNameColumn.DataPropertyName = "FirstName"
-        Me.FirstNameColumn.HeaderText = "First"
-        Me.FirstNameColumn.Name = "FirstNameColumn"
-        '
-        'LastNameColumn
-        '
-        Me.LastNameColumn.DataPropertyName = "LastName"
-        Me.LastNameColumn.HeaderText = "Last"
-        Me.LastNameColumn.Name = "LastNameColumn"
-        '
-        'LastUpdatedColumn
-        '
-        Me.LastUpdatedColumn.DataPropertyName = "LastUpdated"
-        Me.LastUpdatedColumn.HeaderText = "Updated"
-        Me.LastUpdatedColumn.Name = "LastUpdatedColumn"
-        '
-        'LastUpdatedByColumn
-        '
-        Me.LastUpdatedByColumn.DataPropertyName = "LastUser"
-        Me.LastUpdatedByColumn.HeaderText = "By"
-        Me.LastUpdatedByColumn.Name = "LastUpdatedByColumn"
-        '
-        'CreatedAtColumn
-        '
-        Me.CreatedAtColumn.DataPropertyName = "CreatedAt"
-        Me.CreatedAtColumn.HeaderText = "Created"
-        Me.CreatedAtColumn.Name = "CreatedAtColumn"
-        '
-        'CreatedByColumn
-        '
-        Me.CreatedByColumn.DataPropertyName = "CreatedBy"
-        Me.CreatedByColumn.HeaderText = "By"
-        Me.CreatedByColumn.Name = "CreatedByColumn"
-        '
-        'DeleteCurrentButton
-        '
-        Me.DeleteCurrentButton.Enabled = False
-        Me.DeleteCurrentButton.Location = New System.Drawing.Point(96, 103)
-        Me.DeleteCurrentButton.Name = "DeleteCurrentButton"
-        Me.DeleteCurrentButton.Size = New System.Drawing.Size(183, 23)
-        Me.DeleteCurrentButton.TabIndex = 10
-        Me.DeleteCurrentButton.Text = "Delete current"
-        Me.DeleteCurrentButton.UseVisualStyleBackColor = True
         '
         'Form1
         '
