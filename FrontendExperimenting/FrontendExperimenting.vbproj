@@ -83,6 +83,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditorForm.Designer.vb">
+      <DependentUpon>EditorForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditorForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EditorForm.resx">
+      <DependentUpon>EditorForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +144,10 @@
     <ProjectReference Include="..\BackendExperimenting\BackendExperimenting.vbproj">
       <Project>{1cb1d1b9-d5be-4076-abe6-6aa3edf33cd4}</Project>
       <Name>BackendExperimenting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DateControls\DateControls.csproj">
+      <Project>{d329e7f5-e561-4b28-94f1-8d2fb0397c72}</Project>
+      <Name>DateControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

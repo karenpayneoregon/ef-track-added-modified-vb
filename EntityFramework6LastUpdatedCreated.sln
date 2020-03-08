@@ -21,11 +21,15 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BackendAuditableEntities", 
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AuditableEntitiesFrontEnd", "AuditableEntitiesFrontEnd\AuditableEntitiesFrontEnd.vbproj", "{305894B8-986C-4490-BC54-EDDFEC2C43D4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compare againsts EF", "Compare againsts EF", "{9C145FB4-D950-4D98-97BA-016373313EEA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peek at where things are going", "Peek at where things are going", "{9C145FB4-D950-4D98-97BA-016373313EEA}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BackendExperimenting", "BackendExperimenting\BackendExperimenting.vbproj", "{1CB1D1B9-D5BE-4076-ABE6-6AA3EDF33CD4}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FrontendExperimenting", "FrontendExperimenting\FrontendExperimenting.vbproj", "{4C8B1785-06E3-432B-AF9F-CC6B1E928E09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinForm controls", "WinForm controls", "{A7419827-6EC2-4EF0-B846-3A1DB45F4CDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateControls", "DateControls\DateControls.csproj", "{D329E7F5-E561-4B28-94F1-8D2FB0397C72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +61,10 @@ Global
 		{4C8B1785-06E3-432B-AF9F-CC6B1E928E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C8B1785-06E3-432B-AF9F-CC6B1E928E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C8B1785-06E3-432B-AF9F-CC6B1E928E09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D329E7F5-E561-4B28-94F1-8D2FB0397C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D329E7F5-E561-4B28-94F1-8D2FB0397C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D329E7F5-E561-4B28-94F1-8D2FB0397C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D329E7F5-E561-4B28-94F1-8D2FB0397C72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{305894B8-986C-4490-BC54-EDDFEC2C43D4} = {186D0F9B-833D-4A4C-9702-27A1EEF9F7AD}
 		{1CB1D1B9-D5BE-4076-ABE6-6AA3EDF33CD4} = {9C145FB4-D950-4D98-97BA-016373313EEA}
 		{4C8B1785-06E3-432B-AF9F-CC6B1E928E09} = {9C145FB4-D950-4D98-97BA-016373313EEA}
+		{D329E7F5-E561-4B28-94F1-8D2FB0397C72} = {A7419827-6EC2-4EF0-B846-3A1DB45F4CDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAB5E699-0352-4460-A3CF-0D616BBD52DE}

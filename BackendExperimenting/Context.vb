@@ -1,6 +1,8 @@
 Imports System
+Imports System.ComponentModel.DataAnnotations
 Imports System.Data.Entity
 Imports System.ComponentModel.DataAnnotations.Schema
+Imports System.Data.Entity.Core.Objects
 Imports System.Data.Entity.Infrastructure
 Imports System.Linq
 
@@ -26,11 +28,39 @@ Partial Public Class Context
         Return MyBase.SaveChanges()
 
     End Function
+
+    Public Overrides Function SaveChanges() As Integer
+        ChangeTracker.DetectChanges()
+        Dim test = ChangeTracker.Entries()
+        Console.WriteLine(test.Count())
+
+        Dim tester = ChangeTracker.Entries().Where(Function(item) item.State = EntityState.Added).Count()
+
+        Return MyBase.SaveChanges()
+
+    End Function
+    Public ReadOnly Property ValidateChanges As List(Of ValidationResult)
+        Get
+            Dim changedEntities = ChangeTracker.Entries().Where(Function(underscore) underscore.State = EntityState.Added OrElse underscore.State = EntityState.Modified)
+
+            Dim errors As List(Of ValidationResult) = New List(Of ValidationResult)()
+            For Each e In changedEntities
+                Dim vc = New ValidationContext(e.Entity, Nothing, Nothing)
+                Validator.TryValidateObject(e.Entity, vc, errors, validateAllProperties:=True)
+            Next
+
+            Return errors
+
+        End Get
+    End Property
+
+
+
     Public Sub Review()
 
         ChangeTracker.DetectChanges()
         Dim test = ChangeTracker.Entries()
-
+        Console.WriteLine(test.Count())
         For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
             If currentEntry.State = EntityState.Added Then
                 Console.WriteLine()

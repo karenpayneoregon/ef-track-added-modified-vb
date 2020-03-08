@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.Entity
 Imports BackendExperimenting
 Imports Equin.ApplicationFramework
 
@@ -6,7 +7,7 @@ Public Class Form1
     Private Context As New Context
     Private _originalCount As Integer = 0
     Private _customerView As BindingListView(Of Person)
-    Private _customerBindingSource As New BindingSource
+    WithEvents _customerBindingSource As New BindingSource
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         '
@@ -46,16 +47,15 @@ Public Class Form1
     ''' <param name="e"></param>
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
 
-        Dim newEntityList As New List(Of Person)
 
-        If _customerView.Count > _originalCount Then
-            For index As Integer = _originalCount To _customerView.Count - 1
-                newEntityList.Add(_customerView(index).Object)
-            Next
-        End If
+        Try
+            Dim validationErrors = Context.ValidateChanges
 
-        Dim affected = Context.SaveChanges(newEntityList)
-        MessageBox.Show($"Changes pushed to table: {affected}")
+            Dim affected = Context.SaveChanges()
+            MessageBox.Show($"Changes pushed to table: {affected}")
+        Catch ex As Exception
+            MessageBox.Show($"Failed: {ex.Message}")
+        End Try
 
     End Sub
     ''' <summary>
@@ -65,7 +65,12 @@ Public Class Form1
     ''' <param name="e"></param>
     Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorAddNewItem.Click
         _customerView.AddNew()
+        Dim p = New Person
+        _customerView.NewItemsList.Add(p)
+        Context.People.Add(p)
+        _customerBindingSource.ResetBindings(False)
         _customerBindingSource.MoveLast()
+
     End Sub
 
 #Region "Delete current person logic/assertion"
@@ -96,6 +101,13 @@ Public Class Form1
         Context.People.Remove(CType(_customerView(_customerBindingSource.Position), Person))
         _customerBindingSource.RemoveCurrent()
     End Sub
-#End Region
 
+#End Region
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim currentPerson = _customerView(_customerBindingSource.Position).Object
+
+        Dim f As New EditorForm(currentPerson)
+        f.ShowDialog()
+
+    End Sub
 End Class

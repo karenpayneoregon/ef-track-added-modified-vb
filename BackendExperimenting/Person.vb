@@ -24,7 +24,7 @@ Partial Public Class Person
             OnPropertyChanged()
         End Set
     End Property
-
+    <Required>
     Public Property FirstName As String
         Get
             Return _FirstName
@@ -34,7 +34,7 @@ Partial Public Class Person
             OnPropertyChanged()
         End Set
     End Property
-
+    <Required>
     Public Property LastName As String
         Get
             Return _LastName
