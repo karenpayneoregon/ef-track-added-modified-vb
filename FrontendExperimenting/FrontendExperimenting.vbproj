@@ -57,6 +57,9 @@
     <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.4.5222.35545, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Equin.ApplicationFramework.BindingListView.1.4.5222.35545\lib\net40-Client\Equin.ApplicationFramework.BindingListView.dll</HintPath>
     </Reference>
+    <Reference Include="ObjectCloner, Version=2.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectCloner.2.2.2\lib\netstandard2.0\ObjectCloner.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -139,6 +142,7 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BackendExperimenting\BackendExperimenting.vbproj">

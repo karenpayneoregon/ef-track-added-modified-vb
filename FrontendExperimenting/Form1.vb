@@ -2,6 +2,7 @@
 Imports System.Data.Entity
 Imports BackendExperimenting
 Imports Equin.ApplicationFramework
+Imports ObjectCloner
 
 Public Class Form1
     Private Context As New Context
@@ -103,11 +104,34 @@ Public Class Form1
     End Sub
 
 #End Region
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim currentPerson = _customerView(_customerBindingSource.Position).Object
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles EditCurrentPersonButton.Click
+        EditCurrentPerson()
+    End Sub
 
-        Dim f As New EditorForm(currentPerson)
-        f.ShowDialog()
+    Private Sub EditCurrentPersonToolStripButton_Click(sender As Object, e As EventArgs) Handles EditCurrentPersonToolStripButton.Click
+        EditCurrentPerson()
+    End Sub
+    Private Sub EditCurrentPerson()
+        '
+        ' Get current person 
+        '
+        Dim currentPerson As Person = _customerView(_customerBindingSource.Position).Object
+        '
+        ' Make a copy to be used if edits are cancelled
+        '
+        Dim revertCopy = ObjectCloner.ObjectCloner.DeepClone(currentPerson)
 
+
+        Dim editorForm As New EditorForm(currentPerson)
+
+        If editorForm.ShowDialog() = DialogResult.Cancel Then
+            currentPerson.CancelEdit(revertCopy)
+        End If
+
+    End Sub
+
+    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
+        MessageBox.Show("Invalid entry")
+        e.Cancel = True
     End Sub
 End Class

@@ -63,11 +63,9 @@ Partial Public Class Person
 
 #Region "INotifyPropertyChanged implementation"
 
-    Public Event PropertyChanged As PropertyChangedEventHandler _
-        Implements INotifyPropertyChanged.PropertyChanged
+    Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
-    Protected Overridable Sub OnPropertyChanged(
-        <CallerMemberName> Optional memberName As String = Nothing)
+    Protected Overridable Sub OnPropertyChanged(<CallerMemberName> Optional memberName As String = Nothing)
 
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(memberName))
 

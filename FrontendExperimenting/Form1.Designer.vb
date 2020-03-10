@@ -25,6 +25,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.EditCurrentPersonButton = New System.Windows.Forms.Button()
         Me.SaveButton = New System.Windows.Forms.Button()
         Me.ReviewChangesButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -43,7 +44,7 @@ Partial Class Form1
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.EditCurrentPersonToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +53,7 @@ Partial Class Form1
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.EditCurrentPersonButton)
         Me.Panel1.Controls.Add(Me.SaveButton)
         Me.Panel1.Controls.Add(Me.ReviewChangesButton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -61,11 +62,20 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(407, 49)
         Me.Panel1.TabIndex = 0
         '
+        'EditCurrentPersonButton
+        '
+        Me.EditCurrentPersonButton.Location = New System.Drawing.Point(145, 14)
+        Me.EditCurrentPersonButton.Name = "EditCurrentPersonButton"
+        Me.EditCurrentPersonButton.Size = New System.Drawing.Size(113, 23)
+        Me.EditCurrentPersonButton.TabIndex = 2
+        Me.EditCurrentPersonButton.Text = "Edit current person"
+        Me.EditCurrentPersonButton.UseVisualStyleBackColor = True
+        '
         'SaveButton
         '
-        Me.SaveButton.Location = New System.Drawing.Point(287, 14)
+        Me.SaveButton.Location = New System.Drawing.Point(282, 14)
         Me.SaveButton.Name = "SaveButton"
-        Me.SaveButton.Size = New System.Drawing.Size(108, 23)
+        Me.SaveButton.Size = New System.Drawing.Size(113, 23)
         Me.SaveButton.TabIndex = 1
         Me.SaveButton.Text = "Save changes"
         Me.SaveButton.UseVisualStyleBackColor = True
@@ -74,7 +84,7 @@ Partial Class Form1
         '
         Me.ReviewChangesButton.Location = New System.Drawing.Point(12, 14)
         Me.ReviewChangesButton.Name = "ReviewChangesButton"
-        Me.ReviewChangesButton.Size = New System.Drawing.Size(108, 23)
+        Me.ReviewChangesButton.Size = New System.Drawing.Size(113, 23)
         Me.ReviewChangesButton.TabIndex = 0
         Me.ReviewChangesButton.Text = "Review changes"
         Me.ReviewChangesButton.UseVisualStyleBackColor = True
@@ -113,7 +123,7 @@ Partial Class Form1
         Me.BindingNavigator1.AddNewItem = Nothing
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.EditCurrentPersonToolStripButton})
         Me.BindingNavigator1.Location = New System.Drawing.Point(0, 0)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -210,14 +220,14 @@ Partial Class Form1
         Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
         Me.BindingNavigatorDeleteItem.Text = "Delete"
         '
-        'Button1
+        'EditCurrentPersonToolStripButton
         '
-        Me.Button1.Location = New System.Drawing.Point(162, 17)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.EditCurrentPersonToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.EditCurrentPersonToolStripButton.Image = CType(resources.GetObject("EditCurrentPersonToolStripButton.Image"), System.Drawing.Image)
+        Me.EditCurrentPersonToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.EditCurrentPersonToolStripButton.Name = "EditCurrentPersonToolStripButton"
+        Me.EditCurrentPersonToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.EditCurrentPersonToolStripButton.Text = "ToolStripButton1"
         '
         'Form1
         '
@@ -260,5 +270,6 @@ Partial Class Form1
     Friend WithEvents BindingNavigatorMoveNextItem As ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
-    Friend WithEvents Button1 As Button
+    Friend WithEvents EditCurrentPersonButton As Button
+    Friend WithEvents EditCurrentPersonToolStripButton As ToolStripButton
 End Class

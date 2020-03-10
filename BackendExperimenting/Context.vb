@@ -17,17 +17,6 @@ Partial Public Class Context
 
     Protected Overrides Sub OnModelCreating(ByVal modelBuilder As DbModelBuilder)
     End Sub
-    Public Overloads Function SaveChanges(NewPeople As List(Of Person)) As Integer
-
-        If NewPeople.Count > 0 Then
-            For Each person As Person In NewPeople
-                Me.People.Add(person)
-            Next
-        End If
-
-        Return MyBase.SaveChanges()
-
-    End Function
 
     Public Overrides Function SaveChanges() As Integer
         ChangeTracker.DetectChanges()
@@ -59,8 +48,10 @@ Partial Public Class Context
     Public Sub Review()
 
         ChangeTracker.DetectChanges()
-        Dim test = ChangeTracker.Entries()
-        Console.WriteLine(test.Count())
+
+        Dim originalValue = ""
+        Dim currentValue = ""
+
         For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
             If currentEntry.State = EntityState.Added Then
                 Console.WriteLine()
@@ -68,7 +59,15 @@ Partial Public Class Context
             If currentEntry.State = EntityState.Modified Then
                 For Each propertyName As String In currentEntry.CurrentValues.PropertyNames
 
-                    If currentEntry.OriginalValues(propertyName).ToString() <> currentEntry.CurrentValues(propertyName).ToString() Then
+                    If currentEntry.OriginalValues(propertyName) IsNot Nothing Then
+                        originalValue = currentEntry.OriginalValues(propertyName).ToString()
+                    End If
+
+                    If currentEntry.CurrentValues(propertyName) IsNot Nothing Then
+                        currentValue = currentEntry.CurrentValues(propertyName).ToString()
+                    End If
+
+                    If originalValue <> currentValue Then
 
                         Console.WriteLine(
                             $"ID: {GetPrimaryKeyValue(currentEntry)} " &
@@ -79,7 +78,7 @@ Partial Public Class Context
                     End If
                 Next
             ElseIf currentEntry.State = EntityState.Deleted Then
-                Console.WriteLine()
+                Console.WriteLine("Got a person marked for deletion")
             End If
         Next
 

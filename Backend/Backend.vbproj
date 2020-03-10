@@ -117,5 +117,6 @@
   <ItemGroup>
     <Content Include="DataScript.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

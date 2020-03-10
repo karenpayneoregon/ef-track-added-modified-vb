@@ -10,6 +10,9 @@ Public Class EditorForm
 
         FirstNameTextBox.DataBindings.Add("Text", currentPerson, "FirstName")
         LastNameTextBox.DataBindings.Add("Text", currentPerson, "LastName")
+        'FirstNameTextBox.Text = currentPerson.FirstName
+        'LastNameTextBox.Text = currentPerson.LastName
+
 
         If currentPerson.BirthDate.HasValue Then
             BirthDateDateTimePicker.Value = currentPerson.BirthDate.Value
