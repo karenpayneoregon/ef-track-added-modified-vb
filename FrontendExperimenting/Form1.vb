@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.Entity
 Imports BackendExperimenting
+Imports BackendExperimenting.Helpers
 Imports Equin.ApplicationFramework
 Imports ObjectCloner
 
