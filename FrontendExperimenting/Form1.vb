@@ -3,7 +3,7 @@ Imports System.Data.Entity
 Imports BackendExperimenting
 Imports BackendExperimenting.Helpers
 Imports Equin.ApplicationFramework
-Imports ObjectCloner
+
 
 Public Class Form1
     Private Context As New Context
@@ -48,7 +48,6 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
-
 
         Try
             Dim validationErrors = Context.ValidateChanges
@@ -101,7 +100,7 @@ Public Class Form1
     End Sub
     Private Sub RemoveCurrent()
         Context.People.Remove(CType(_customerView(_customerBindingSource.Position), Person))
-        _customerBindingSource.RemoveCurrent()
+        '_customerBindingSource.RemoveCurrent()
     End Sub
 
 #End Region

@@ -8,7 +8,7 @@ Partial Public Class Context
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=ContextKaren")
+        MyBase.New("name=Context") ' or secondary connection string
     End Sub
     Public Sub New(ConnectionString As String)
         MyBase.New(ConnectionString)

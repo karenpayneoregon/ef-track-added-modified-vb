@@ -8,12 +8,14 @@ Imports System.Runtime.CompilerServices
 
 <Table("Person")>
 Partial Public Class Person
+    Inherits BaseEntity
     Implements INotifyPropertyChanged
 
     Private _Id As Integer
     Private _FirstName As String
     Private _LastName As String
-    Private _BirthDate As Date?
+    Private _BirthDate As DateTime?
+    Private _updatedUtc1 As DateTime?
 
     Public Property Id As Integer
         Get
@@ -52,6 +54,16 @@ Partial Public Class Person
         End Get
         Set
             _BirthDate = Value
+            OnPropertyChanged()
+        End Set
+    End Property
+    '<NotMapped>
+    Public Property UpdatedUtc() As DateTime?
+        Get
+            Return _updatedUtc1
+        End Get
+        Set
+            _updatedUtc1 = Value
             OnPropertyChanged()
         End Set
     End Property

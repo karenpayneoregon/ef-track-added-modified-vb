@@ -5,6 +5,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Core.Objects
 Imports System.Data.Entity.Infrastructure
 Imports System.Linq
+Imports Backend
 
 Partial Public Class Context
     Inherits DbContext
@@ -19,11 +20,9 @@ Partial Public Class Context
     End Sub
 
     Public Overrides Function SaveChanges() As Integer
-        ChangeTracker.DetectChanges()
-        Dim test = ChangeTracker.Entries()
-        Console.WriteLine(test.Count())
+        'ChangeTracker.DetectChanges()
 
-        Dim tester = ChangeTracker.Entries().Where(Function(item) item.State = EntityState.Added).Count()
+        BeforeSave()
 
         Return MyBase.SaveChanges()
 
@@ -42,6 +41,41 @@ Partial Public Class Context
 
         End Get
     End Property
+    ''' <summary>
+    ''' Responsible for setting created, last updated
+    ''' and soft delete property before SaveChanges or SaveChangesAsync
+    ''' </summary>
+    Private Sub BeforeSave()
+
+        ChangeTracker.DetectChanges()
+
+        For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
+
+            If currentEntry.State = EntityState.Added OrElse currentEntry.State = EntityState.Modified Then
+
+                currentEntry.Property("UpdatedUtc").CurrentValue = Date.Now
+                currentEntry.Property("UpdaterUserId").CurrentValue = 5
+
+                If TypeOf currentEntry.Entity Is Person AndAlso currentEntry.State = EntityState.Added Then
+                    currentEntry.Property("CreatedAt").CurrentValue = Date.Now
+                    currentEntry.Property("CreatedBy").CurrentValue = Environment.UserName
+                End If
+
+            ElseIf currentEntry.State = EntityState.Deleted Then
+                'Dim test = CType(currentEntry.Entity, Person)
+                'Console.WriteLine()
+                currentEntry.Property("UpdatedUtc").CurrentValue = Date.Now
+                currentEntry.Property("UpdaterUserId").CurrentValue = 1
+
+                currentEntry.State = EntityState.Modified
+                CType(currentEntry.Entity, BaseEntity).IsDeleted = True
+
+            End If
+
+        Next
+
+    End Sub
+
 
 
 

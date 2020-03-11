@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.vb" />
     <Compile Include="Context.vb" />
     <Compile Include="Helpers\PersonExtensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -112,6 +113,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\Backend.vbproj">
+      <Project>{BFFC6D36-D78A-4C1C-AFA0-CA561C164EDD}</Project>
+      <Name>Backend</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
