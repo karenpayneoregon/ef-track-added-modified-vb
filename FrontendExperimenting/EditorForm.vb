@@ -1,4 +1,5 @@
 ﻿Imports BackendExperimenting
+Imports Validators
 
 Public Class EditorForm
     Private currentPerson As Person
@@ -10,8 +11,6 @@ Public Class EditorForm
 
         FirstNameTextBox.DataBindings.Add("Text", currentPerson, "FirstName")
         LastNameTextBox.DataBindings.Add("Text", currentPerson, "LastName")
-        'FirstNameTextBox.Text = currentPerson.FirstName
-        'LastNameTextBox.Text = currentPerson.LastName
 
 
         If currentPerson.BirthDate.HasValue Then
@@ -22,13 +21,21 @@ Public Class EditorForm
 
     End Sub
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+        currentPerson.FirstName = FirstNameTextBox.Text
+        currentPerson.LastName = LastNameTextBox.Text
 
-        If Not String.IsNullOrWhiteSpace(FirstNameTextBox.Text) OrElse Not String.IsNullOrWhiteSpace(LastNameTextBox.Text) Then
-            DialogResult = DialogResult.OK
+        Dim validationResult = ValidationHelper.ValidateEntity(currentPerson)
+
+        If validationResult.HasError Then
+
+            Dim errorItems = String.Join(Environment.NewLine,
+                                         validationResult.ErrorItemList().
+                                            Select(Function(containerItem) containerItem.ErrorMessage).ToArray())
+            MessageBox.Show(errorItems)
+
         Else
-            MessageBox.Show("First and last name are required")
+            DialogResult = DialogResult.OK
         End If
+
     End Sub
-
-
 End Class

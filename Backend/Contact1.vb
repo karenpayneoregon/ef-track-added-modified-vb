@@ -25,7 +25,7 @@ Partial Public Class Contact1
             OnPropertyChanged()
         End Set
     End Property
-
+    <Required(ErrorMessage:="{0} Required")>
     Public Property FirstName As String
         Get
             Return _firstName
@@ -35,7 +35,7 @@ Partial Public Class Contact1
             OnPropertyChanged()
         End Set
     End Property
-
+    <Required(ErrorMessage:="{0} Required")>
     Public Property LastName As String
         Get
             Return _lastName
