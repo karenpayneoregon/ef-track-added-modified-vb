@@ -15,7 +15,7 @@ Partial Public Class Person
     Private _FirstName As String
     Private _LastName As String
     Private _BirthDate As DateTime?
-    Private _updatedUtc1 As DateTime?
+    Private _updatedUtc As DateTime?
 
     Public Property Id As Integer
         Get
@@ -60,10 +60,10 @@ Partial Public Class Person
     '<NotMapped>
     Public Property UpdatedUtc() As DateTime?
         Get
-            Return _updatedUtc1
+            Return _updatedUtc
         End Get
         Set
-            _updatedUtc1 = Value
+            _updatedUtc = Value
             OnPropertyChanged()
         End Set
     End Property

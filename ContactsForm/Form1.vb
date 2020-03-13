@@ -1,7 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.Entity
 Imports Backend
-Imports ContactsForm.Extensions
 Imports ContactsForm.Modules
 
 ''' <summary>

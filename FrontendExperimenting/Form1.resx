@@ -198,13 +198,23 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGISURBVDhPrZPNSwJRFMUt3PWx6Y8ICloVRpsiWkiLaiEu
-        tKB/IHKltRAkFwVFQXshiQhCyMgMqaBVVBCmRUVEC0XLHL+wGcHN6d7hmZmlEh14zDDv/M677707mkZV
-        KBSGFUUJyrICeiZo2AA0ienakmV5LBKXinqnH1qjC50zOzgNRzjIJiy/qwR3zXowZN/HzdML7FsXaghX
-        Imw/i+GogBnomN7E2W1UDWk2uDgAwlothmOJdLHXuotR5yHekhk4ti/VEK5kfDHAAWFhr9RX2Lh8hKSU
-        QTaTU0O4kkEKkLJZhXx9AinrO5xKZT9hrqQE860IpKx68MD83t9h/v4qZYj9b5i7iU4zqbN50T7lxvVj
-        vArmcF5EIJXK5/M9oecE2ibdMK+dqNd09RBrDGbRpGXdF4J+wa+ubFo9RqvZDW4ebqKaMIvK9xpo37o5
-        L0YcB2gxbaDb4gG3b12YRX9XmlebWApgxRvE+X0MtK13gg3CUltkvKORo0p8NKz03k8HqxXTdaTRfAAJ
-        WcGQSvMQYQAAAABJRU5ErkJggg==
+        tKB/IHKltRAkFwVFQXshiQhCyMgMqaBVVBCmRUVEC8XMrxyxGcHN6d7hmZmlEh14zDDv/M677707mkZV
+        KBSGFUUJyrICeiZo2AA0ienakmV5LBJLFvVOP7RGFzpndnAajnCQTVh+VwnumvVgyL6Pm6c47FsXaghX
+        Imw/i+GogBnomN7E2W1UDWk2uDgAwlothmPxdLHXuotR5yGSqSwc25dqCFcyvhjggLCwV+orbFw+Qiqd
+        hZTNqSFcySAFpCVJIV+fQMr6Dmcy0ifMlZRgvhWBlFUPHpjf+zvM31/TWWL/G+ZuotNM6WxetE+5cf34
+        UgVzOC8ikErl8/me0HMCbZNumNdO1Gu6eog1BrNo0rLuC0G/4FdXNq0eo9XsBjcPN1FNmEXlew20b92c
+        FyOOA7SYNtBt8YDbty7Mor/rjVebWApgxRvE+X0MtK13gg3CUltkvKORo0p8NKz03k8HqxXTdaTRfACj
+        /8Fhc9ExeAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="ReviewChangesToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADbSURBVDhPlZHBEYMgEEWpzbsFWIUt5OTdu3cLsJB0oHZg
+        VPBK/Gs+s5qIhpmny7L7GMDosSyL/5dP6zaQSJLkNkGgjVh4DeMlXwJtvuJUcNzlF6cC4Kzz0zgLiME8
+        27jAWtsVRSEJUFWVwDnWtAS5nQAfTOq69m3bhUbEyLEwKkjT1GdZttsZcZ7nsoaaM4xz7tH3vS/LUoop
+        uIMIeIlN00gSf8Y4v96N4HIZo/mpm6dpfYUVLcE8dgeDbmahltjDKxAR8AiARQQS3QzYSIJAm68IjRza
+        eJet05g3uxbVRx3DgTMAAAAASUVORK5CYII=
 </value>
   </data>
 </root>

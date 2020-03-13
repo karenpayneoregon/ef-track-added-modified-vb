@@ -33,14 +33,7 @@ Public Class Form1
         DataGridView1.DataSource = _customerBindingSource
 
     End Sub
-    ''' <summary>
-    ''' Provides a starting point to inspect entities
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub ReviewChangesButton_Click(sender As Object, e As EventArgs) Handles ReviewChangesButton.Click
-        Context.Review()
-    End Sub
+
     ''' <summary>
     ''' Tell the context people have been added or not using the Person List 
     ''' and save
@@ -100,11 +93,10 @@ Public Class Form1
     End Sub
     Private Sub RemoveCurrent()
         Context.People.Remove(CType(_customerView(_customerBindingSource.Position), Person))
-        '_customerBindingSource.RemoveCurrent()
     End Sub
 
 #End Region
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles EditCurrentPersonButton.Click
+    Private Sub EditCurrentPersonButton_Click(sender As Object, e As EventArgs) Handles EditCurrentPersonButton.Click
         EditCurrentPerson()
     End Sub
 
@@ -133,5 +125,13 @@ Public Class Form1
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
         MessageBox.Show("Invalid entry")
         e.Cancel = True
+    End Sub
+    ''' <summary>
+    ''' Starting of peeking at changes
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub ReviewChangesToolStripButton_Click(sender As Object, e As EventArgs) Handles ReviewChangesToolStripButton.Click
+        Context.Review()
     End Sub
 End Class

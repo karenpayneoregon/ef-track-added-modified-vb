@@ -27,7 +27,6 @@ Partial Class Form1
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.EditCurrentPersonButton = New System.Windows.Forms.Button()
         Me.SaveButton = New System.Windows.Forms.Button()
-        Me.ReviewChangesButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.FirstNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -45,6 +44,7 @@ Partial Class Form1
         Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.EditCurrentPersonToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.ReviewChangesToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +55,6 @@ Partial Class Form1
         '
         Me.Panel1.Controls.Add(Me.EditCurrentPersonButton)
         Me.Panel1.Controls.Add(Me.SaveButton)
-        Me.Panel1.Controls.Add(Me.ReviewChangesButton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 412)
         Me.Panel1.Name = "Panel1"
@@ -79,15 +78,6 @@ Partial Class Form1
         Me.SaveButton.TabIndex = 1
         Me.SaveButton.Text = "Save changes"
         Me.SaveButton.UseVisualStyleBackColor = True
-        '
-        'ReviewChangesButton
-        '
-        Me.ReviewChangesButton.Location = New System.Drawing.Point(12, 14)
-        Me.ReviewChangesButton.Name = "ReviewChangesButton"
-        Me.ReviewChangesButton.Size = New System.Drawing.Size(113, 23)
-        Me.ReviewChangesButton.TabIndex = 0
-        Me.ReviewChangesButton.Text = "Review changes"
-        Me.ReviewChangesButton.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -123,7 +113,7 @@ Partial Class Form1
         Me.BindingNavigator1.AddNewItem = Nothing
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.EditCurrentPersonToolStripButton})
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem, Me.EditCurrentPersonToolStripButton, Me.ReviewChangesToolStripButton})
         Me.BindingNavigator1.Location = New System.Drawing.Point(0, 0)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -229,6 +219,15 @@ Partial Class Form1
         Me.EditCurrentPersonToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.EditCurrentPersonToolStripButton.Text = "ToolStripButton1"
         '
+        'ReviewChangesToolStripButton
+        '
+        Me.ReviewChangesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ReviewChangesToolStripButton.Image = CType(resources.GetObject("ReviewChangesToolStripButton.Image"), System.Drawing.Image)
+        Me.ReviewChangesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ReviewChangesToolStripButton.Name = "ReviewChangesToolStripButton"
+        Me.ReviewChangesToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.ReviewChangesToolStripButton.Text = "ToolStripButton1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -256,7 +255,6 @@ Partial Class Form1
     Friend WithEvents FirstNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents LastNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents BirthdayColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ReviewChangesButton As Button
     Friend WithEvents SaveButton As Button
     Friend WithEvents BindingNavigator1 As BindingNavigator
     Friend WithEvents BindingNavigatorAddNewItem As ToolStripButton
@@ -272,4 +270,5 @@ Partial Class Form1
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
     Friend WithEvents EditCurrentPersonButton As Button
     Friend WithEvents EditCurrentPersonToolStripButton As ToolStripButton
+    Friend WithEvents ReviewChangesToolStripButton As ToolStripButton
 End Class
