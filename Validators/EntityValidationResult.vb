@@ -3,7 +3,7 @@
 Public Class EntityValidationResult
     Public Property Errors As IList(Of ValidationResult)
 
-    Public ReadOnly Property HasError() As Boolean
+    Public ReadOnly Property HasViolations() As Boolean
         Get
             Return Errors.Count > 0
         End Get

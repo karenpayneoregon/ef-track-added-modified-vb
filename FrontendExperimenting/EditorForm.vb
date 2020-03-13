@@ -24,14 +24,19 @@ Public Class EditorForm
         currentPerson.FirstName = FirstNameTextBox.Text
         currentPerson.LastName = LastNameTextBox.Text
 
-        Dim validationResult = ValidationHelper.ValidateEntity(currentPerson)
+        '
+        ' validate properties
+        '
+        Dim validation = ValidationHelper.ValidateEntity(currentPerson)
 
-        If validationResult.HasError Then
+        If validation.HasViolations Then
 
-            Dim errorItems = String.Join(Environment.NewLine,
-                                         validationResult.ErrorItemList().
-                                            Select(Function(containerItem) containerItem.ErrorMessage).ToArray())
-            MessageBox.Show(errorItems)
+            Dim errorItems = String.Join(
+                Environment.NewLine,
+                validation.ErrorItemList().
+                        Select(Function(containerItem) containerItem.ErrorMessage).ToArray())
+
+            MessageBox.Show(errorItems, "Corrections needed")
 
         Else
             DialogResult = DialogResult.OK
