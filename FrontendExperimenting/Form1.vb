@@ -142,6 +142,13 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ReviewChangesToolStripButton_Click(sender As Object, e As EventArgs) Handles ReviewChangesToolStripButton.Click
-        Context.Review()
+        Dim reviewForm As New ReviewChangesForm(Context.Review())
+        reviewForm.ShowDialog()
+    End Sub
+
+    Private Sub SampleDateFilterButton_Click(sender As Object, e As EventArgs) Handles SampleDateFilterButton.Click
+        Dim filterForm As New FilterBirthDateForm(_customerView)
+        filterForm.ShowDialog()
+        filterForm.Dispose()
     End Sub
 End Class

@@ -92,6 +92,12 @@
     <Compile Include="EditorForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FilterBirthDateForm.Designer.vb">
+      <DependentUpon>FilterBirthDateForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FilterBirthDateForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -115,10 +121,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReviewChangesForm.Designer.vb">
+      <DependentUpon>ReviewChangesForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewChangesForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditorForm.resx">
       <DependentUpon>EditorForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterBirthDateForm.resx">
+      <DependentUpon>FilterBirthDateForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -128,6 +143,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReviewChangesForm.resx">
+      <DependentUpon>ReviewChangesForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

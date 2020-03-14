@@ -45,6 +45,7 @@ Partial Class Form1
         Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.EditCurrentPersonToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ReviewChangesToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.SampleDateFilterButton = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +54,7 @@ Partial Class Form1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.SampleDateFilterButton)
         Me.Panel1.Controls.Add(Me.EditCurrentPersonButton)
         Me.Panel1.Controls.Add(Me.SaveButton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -228,6 +230,15 @@ Partial Class Form1
         Me.ReviewChangesToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.ReviewChangesToolStripButton.Text = "ToolStripButton1"
         '
+        'SampleDateFilterButton
+        '
+        Me.SampleDateFilterButton.Location = New System.Drawing.Point(12, 14)
+        Me.SampleDateFilterButton.Name = "SampleDateFilterButton"
+        Me.SampleDateFilterButton.Size = New System.Drawing.Size(113, 23)
+        Me.SampleDateFilterButton.TabIndex = 2
+        Me.SampleDateFilterButton.Text = "Sample filter"
+        Me.SampleDateFilterButton.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -271,4 +282,5 @@ Partial Class Form1
     Friend WithEvents EditCurrentPersonButton As Button
     Friend WithEvents EditCurrentPersonToolStripButton As ToolStripButton
     Friend WithEvents ReviewChangesToolStripButton As ToolStripButton
+    Friend WithEvents SampleDateFilterButton As Button
 End Class

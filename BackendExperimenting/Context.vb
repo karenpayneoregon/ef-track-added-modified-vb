@@ -5,6 +5,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Core.Objects
 Imports System.Data.Entity.Infrastructure
 Imports System.Linq
+Imports System.Text
 Imports Backend
 
 Partial Public Class Context
@@ -27,12 +28,17 @@ Partial Public Class Context
         Return MyBase.SaveChanges()
 
     End Function
+    ''' <summary>
+    ''' Provides validation via data annotations 
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property ValidateChanges As List(Of ValidationResult)
         Get
 
             Dim changedEntities =
                     ChangeTracker.Entries().
-                    Where(Function(underscore) underscore.State = EntityState.Added OrElse underscore.State = EntityState.Modified)
+                    Where(Function(underscore) underscore.State = EntityState.Added OrElse
+                                               underscore.State = EntityState.Modified)
 
             Dim errors As List(Of ValidationResult) = New List(Of ValidationResult)()
 
@@ -66,8 +72,7 @@ Partial Public Class Context
                 End If
 
             ElseIf currentEntry.State = EntityState.Deleted Then
-                'Dim test = CType(currentEntry.Entity, Person)
-                'Console.WriteLine()
+
                 currentEntry.Property("UpdatedUtc").CurrentValue = Date.Now
                 currentEntry.Property("UpdaterUserId").CurrentValue = 1
 
@@ -79,11 +84,12 @@ Partial Public Class Context
         Next
 
     End Sub
-
-
-
-
-    Public Sub Review()
+    ''' <summary>
+    ''' Helper for developers to inspect what changes there are currently
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function Review() As String
+        Dim sb As New StringBuilder
 
         ChangeTracker.DetectChanges()
 
@@ -91,9 +97,11 @@ Partial Public Class Context
         Dim currentValue = ""
 
         For Each currentEntry As DbEntityEntry In ChangeTracker.Entries()
+
             If currentEntry.State = EntityState.Added Then
-                Console.WriteLine()
+                sb.AppendLine("New person")
             End If
+
             If currentEntry.State = EntityState.Modified Then
                 For Each propertyName As String In currentEntry.CurrentValues.PropertyNames
 
@@ -107,7 +115,7 @@ Partial Public Class Context
 
                     If originalValue <> currentValue Then
 
-                        Console.WriteLine(
+                        sb.AppendLine(
                             $"ID: {GetPrimaryKeyValue(currentEntry)} " &
                             $"Name {propertyName} " &
                             $"Original value: {currentEntry.OriginalValues(propertyName)} " &
@@ -116,11 +124,22 @@ Partial Public Class Context
                     End If
                 Next
             ElseIf currentEntry.State = EntityState.Deleted Then
-                Console.WriteLine("Got a person marked for deletion")
+                sb.AppendLine("Got a person marked for deletion")
             End If
         Next
 
-    End Sub
+        If sb.Length = 0 Then
+            Return "No changes"
+        Else
+            Return sb.ToString()
+        End If
+
+    End Function
+    ''' <summary>
+    ''' Get primary key for modified entity, do not use for added entities.
+    ''' </summary>
+    ''' <param name="entry"></param>
+    ''' <returns></returns>
     Private Function GetPrimaryKeyValue(entry As DbEntityEntry) As Object
 
         Dim objectStateEntry = CType(Me, IObjectContextAdapter).
