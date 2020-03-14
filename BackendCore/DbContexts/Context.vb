@@ -61,26 +61,7 @@ Partial Public Class Context
     ''' </summary>
     ''' <returns></returns>
     Public Overrides Function SaveChanges() As Integer
-        ChangeTracker.DetectChanges()
-
-
-        For Each Entry As EntityEntry In ChangeTracker.Entries()
-
-            If Entry.State = EntityState.Added OrElse Entry.State = EntityState.Modified Then
-                Entry.Property("LastUpdated").CurrentValue = DateTime.Now
-                Entry.Property("LastUser").CurrentValue = Environment.UserName
-
-                If TypeOf Entry.Entity Is Contact1 AndAlso Entry.State = EntityState.Added Then
-                    Entry.Property("Createe.dAt").CurrentValue = DateTime.Now
-                    Entry.Property("CreatedBy").CurrentValue = Environment.UserName
-                End If
-            ElseIf Entry.State = EntityState.Deleted Then
-                ' Change state to modified and set delete flag
-                Entry.State = EntityState.Modified
-                Entry.Property("isDeleted").CurrentValue = True
-            End If
-
-        Next
+        BeforeSave()
 
         Return MyBase.SaveChanges()
     End Function
@@ -89,6 +70,7 @@ Partial Public Class Context
 
         ChangeTracker.DetectChanges()
 
+        ' DbEntityEntry in EF6
         For Each currentEntry As EntityEntry In ChangeTracker.Entries()
 
             If currentEntry.State = EntityState.Added OrElse currentEntry.State = EntityState.Modified Then
