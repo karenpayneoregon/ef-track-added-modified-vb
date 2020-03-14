@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity class projects", "Entity class projects", "{7A54D94C-7E99-4D3D-BAF6-31E05507073F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity Framework 6 class projects", "Entity Framework 6 class projects", "{7A54D94C-7E99-4D3D-BAF6-31E05507073F}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Backend", "Backend\Backend.vbproj", "{BFFC6D36-D78A-4C1C-AFA0-CA561C164EDD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User interfaces", "User interfaces", "{186D0F9B-833D-4A4C-9702-27A1EEF9F7AD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity Framework 6 create and update automatic", "Entity Framework 6 create and update automatic", "{186D0F9B-833D-4A4C-9702-27A1EEF9F7AD}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ContactsForm", "ContactsForm\ContactsForm.vbproj", "{B1F61457-3302-4B91-B149-FE5AED3AA7FC}"
 EndProject
@@ -21,7 +21,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BackendAuditableEntities", 
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AuditableEntitiesFrontEnd", "AuditableEntitiesFrontEnd\AuditableEntitiesFrontEnd.vbproj", "{305894B8-986C-4490-BC54-EDDFEC2C43D4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peek at where things are going", "Peek at where things are going", "{9C145FB4-D950-4D98-97BA-016373313EEA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity Framework 6 Windows Forms starter", "Entity Framework 6 Windows Forms starter", "{9C145FB4-D950-4D98-97BA-016373313EEA}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BackendExperimenting", "BackendExperimenting\BackendExperimenting.vbproj", "{1CB1D1B9-D5BE-4076-ABE6-6AA3EDF33CD4}"
 EndProject
