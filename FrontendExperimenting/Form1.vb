@@ -1,9 +1,8 @@
-﻿Imports System.ComponentModel
-Imports System.Data.Entity
+﻿Imports System.ComponentModel.DataAnnotations
 Imports BackendExperimenting
 Imports BackendExperimenting.Helpers
 Imports Equin.ApplicationFramework
-
+Imports Validators
 
 Public Class Form1
     Private Context As New Context
@@ -32,21 +31,28 @@ Public Class Form1
         BindingNavigator1.BindingSource = _customerBindingSource
         DataGridView1.DataSource = _customerBindingSource
 
+        ActiveControl = DataGridView1
+
     End Sub
 
     ''' <summary>
-    ''' Tell the context people have been added or not using the Person List 
-    ''' and save
+    ''' Validate there are no issues followed by saving
+    ''' changes if any.
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
 
         Try
-            Dim validationErrors = Context.ValidateChanges
+            Dim validationErrors As List(Of ValidationResult) = Context.ValidateChanges
 
-            Dim affected = Context.SaveChanges()
-            MessageBox.Show($"Changes pushed to table: {affected}")
+            If validationErrors.Count = 0 Then
+                Dim affected = Context.SaveChanges()
+                MessageBox.Show($"Changes pushed to table: {affected}")
+            Else
+                MessageBox.Show(validationErrors.Flatten, "Validation issues")
+            End If
+
         Catch ex As Exception
             MessageBox.Show($"Failed: {ex.Message}")
         End Try
@@ -96,6 +102,8 @@ Public Class Form1
     End Sub
 
 #End Region
+#Region "Edit for current person"
+
     Private Sub EditCurrentPersonButton_Click(sender As Object, e As EventArgs) Handles EditCurrentPersonButton.Click
         EditCurrentPerson()
     End Sub
@@ -121,6 +129,8 @@ Public Class Form1
         End If
 
     End Sub
+
+#End Region
 
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
         MessageBox.Show("Invalid entry")

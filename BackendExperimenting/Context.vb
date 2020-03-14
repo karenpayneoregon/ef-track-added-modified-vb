@@ -29,9 +29,13 @@ Partial Public Class Context
     End Function
     Public ReadOnly Property ValidateChanges As List(Of ValidationResult)
         Get
-            Dim changedEntities = ChangeTracker.Entries().Where(Function(underscore) underscore.State = EntityState.Added OrElse underscore.State = EntityState.Modified)
+
+            Dim changedEntities =
+                    ChangeTracker.Entries().
+                    Where(Function(underscore) underscore.State = EntityState.Added OrElse underscore.State = EntityState.Modified)
 
             Dim errors As List(Of ValidationResult) = New List(Of ValidationResult)()
+
             For Each e In changedEntities
                 Dim vc = New ValidationContext(e.Entity, Nothing, Nothing)
                 Validator.TryValidateObject(e.Entity, vc, errors, validateAllProperties:=True)

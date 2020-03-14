@@ -1,9 +1,10 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Text.RegularExpressions
 
 Public Module ValidatorExtensions
-    <Runtime.CompilerServices.Extension>
+    <Extension>
     Public Function SplitCamelCase(sender As String) As String
         Return Regex.Replace(
             Regex.Replace(sender,
@@ -15,9 +16,18 @@ Public Module ValidatorExtensions
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <returns></returns>
-    <Runtime.CompilerServices.Extension>
+    <Extension>
     Public Function SanitizedErrorMessage(sender As ValidationResult) As String
         Return Regex.Replace(sender.ErrorMessage.SplitCamelCase(), " {2,}", " ")
+    End Function
+    ''' <summary>
+    ''' Create a string of validation issues
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function Flatten(sender As List(Of ValidationResult)) As String
+        Return String.Join(Environment.NewLine, sender.Select(Function(item) item.ErrorMessage).ToArray())
     End Function
     ''' <summary>
     ''' Place all validation messages into a string with 
@@ -25,7 +35,7 @@ Public Module ValidatorExtensions
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <returns></returns>
-    <Runtime.CompilerServices.Extension>
+    <Extension>
     Public Function ErrorMessageList(sender As EntityValidationResult) As String
 
         Dim sb As New StringBuilder
@@ -38,15 +48,15 @@ Public Module ValidatorExtensions
         Return sb.ToString()
 
     End Function
-    <Runtime.CompilerServices.Extension>
+    <Extension>
     Public Function ErrorItemList(sender As EntityValidationResult) As List(Of ErrorContainer)
         Dim itemList As New List(Of ErrorContainer)
 
         For Each errorItem As ValidationResult In sender.Errors
             itemList.Add(New ErrorContainer() With
                             {
-                            .PropertyName = errorItem.MemberNames.FirstOrDefault(),
-                            .ErrorMessage = errorItem.SanitizedErrorMessage
+                                .PropertyName = errorItem.MemberNames.FirstOrDefault(),
+                                .ErrorMessage = errorItem.SanitizedErrorMessage
                             })
         Next
 

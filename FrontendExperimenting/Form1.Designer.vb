@@ -66,7 +66,7 @@ Partial Class Form1
         Me.EditCurrentPersonButton.Location = New System.Drawing.Point(145, 14)
         Me.EditCurrentPersonButton.Name = "EditCurrentPersonButton"
         Me.EditCurrentPersonButton.Size = New System.Drawing.Size(113, 23)
-        Me.EditCurrentPersonButton.TabIndex = 2
+        Me.EditCurrentPersonButton.TabIndex = 0
         Me.EditCurrentPersonButton.Text = "Edit current person"
         Me.EditCurrentPersonButton.UseVisualStyleBackColor = True
         '
@@ -122,7 +122,7 @@ Partial Class Form1
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
         Me.BindingNavigator1.Size = New System.Drawing.Size(407, 25)
-        Me.BindingNavigator1.TabIndex = 2
+        Me.BindingNavigator1.TabIndex = 0
         Me.BindingNavigator1.Text = "BindingNavigator1"
         '
         'BindingNavigatorCountItem
