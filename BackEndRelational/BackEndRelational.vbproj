@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BaseEntity.vb" />
+    <Compile Include="Classes\Customer.vb" />
     <Compile Include="Classes\CustomerEntity.vb" />
     <Compile Include="Classes\NorthWindOperations.vb" />
     <Compile Include="Models\Category.vb" />

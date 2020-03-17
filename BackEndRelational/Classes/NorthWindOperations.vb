@@ -1,4 +1,6 @@
 ﻿
+Imports System.Data.Entity
+
 Public Class NorthWindOperations
 
     Private _NorthWindContext As NorthWindContext
@@ -14,6 +16,27 @@ Public Class NorthWindOperations
     Public Function CountryList() As List(Of Country)
         Return _NorthWindContext.Countries.ToList()
     End Function
+    ''' <summary>
+    ''' Read view/projection asynchronously, note the use
+    ''' of inner ToListAsync which on larger operations can
+    ''' accept a cancellation token yet there are less than
+    ''' 90 records here so no need for a token.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Async Function AllCustomersAsync() As Task(Of List(Of CustomerEntity))
+
+        Return Await Task.Run(
+            Async Function()
+                Dim customerItemsList As List(Of CustomerEntity) =
+                        Await Context.Customers.Select(Customer.Projection).ToListAsync()
+                Return customerItemsList.OrderBy(Function(customer) customer.CompanyName).ToList()
+            End Function)
+
+    End Function
+    ''' <summary>
+    ''' Get list using conventional joins synchronously
+    ''' </summary>
+    ''' <returns></returns>
     Public Function AllCustomers() As List(Of CustomerEntity)
 
         Dim customerData = (

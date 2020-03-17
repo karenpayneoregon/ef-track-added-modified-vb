@@ -23,7 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.CurrentCustomerButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CompanyColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContactNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,21 +38,22 @@ Partial Class Form1
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.CurrentCustomerButton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 395)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(800, 55)
         Me.Panel1.TabIndex = 0
         '
-        'Button1
+        'CurrentCustomerButton
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 20)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.CurrentCustomerButton.Enabled = False
+        Me.CurrentCustomerButton.Location = New System.Drawing.Point(12, 20)
+        Me.CurrentCustomerButton.Name = "CurrentCustomerButton"
+        Me.CurrentCustomerButton.Size = New System.Drawing.Size(118, 23)
+        Me.CurrentCustomerButton.TabIndex = 1
+        Me.CurrentCustomerButton.Text = "Current Customer"
+        Me.CurrentCustomerButton.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
@@ -133,5 +134,5 @@ Partial Class Form1
     Friend WithEvents CityColumn As DataGridViewTextBoxColumn
     Friend WithEvents PostalColumn As DataGridViewTextBoxColumn
     Friend WithEvents CountryColumn As DataGridViewComboBoxColumn
-    Friend WithEvents Button1 As Button
+    Friend WithEvents CurrentCustomerButton As Button
 End Class

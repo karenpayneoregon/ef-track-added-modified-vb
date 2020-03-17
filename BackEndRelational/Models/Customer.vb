@@ -1,10 +1,13 @@
 Imports System
 Imports System.Collections.Generic
+Imports System.ComponentModel
 Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Spatial
+Imports System.Runtime.CompilerServices
 
 Partial Public Class Customer
+
     Public Sub New()
         Orders = New HashSet(Of Order)()
     End Sub
@@ -15,6 +18,7 @@ Partial Public Class Customer
     <Required>
     <StringLength(40)>
     Public Property CompanyName As String
+
 
     '<StringLength(30)>
     'Public Property ContactName As String
@@ -47,4 +51,5 @@ Partial Public Class Customer
     Public Overridable Property Country As Country
 
     Public Overridable Property Orders As ICollection(Of Order)
+
 End Class
