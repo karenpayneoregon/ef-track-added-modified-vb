@@ -129,5 +129,9 @@
     <None Include="packages.config" />
     <None Include="readme.md" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DatabaseScript\script.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
