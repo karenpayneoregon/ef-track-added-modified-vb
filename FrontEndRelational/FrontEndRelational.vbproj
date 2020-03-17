@@ -139,6 +139,10 @@
       <Project>{1b6c4acf-429d-4d94-b8c9-a9fc0d6145ee}</Project>
       <Name>BackEndRelational</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Validators\Validators.vbproj">
+      <Project>{f6aa6425-3b98-4a9b-8ea8-e6091efa6d5e}</Project>
+      <Name>Validators</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

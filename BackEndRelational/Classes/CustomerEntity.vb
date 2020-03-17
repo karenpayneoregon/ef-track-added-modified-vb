@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.ComponentModel.DataAnnotations
 Imports System.Runtime.CompilerServices
 
 Public Class CustomerEntity
@@ -27,7 +28,7 @@ Public Class CustomerEntity
             OnPropertyChanged()
         End Set
     End Property
-
+    <Required>
     Public Property CompanyName() As String
         Get
             Return _companyName1

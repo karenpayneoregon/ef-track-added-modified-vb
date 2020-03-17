@@ -26,5 +26,4 @@ Partial Public Class Customer
         End Get
 
     End Property
-
 End Class

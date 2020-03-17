@@ -27,7 +27,7 @@ Partial Class Form1
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CompanyColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContactNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContactTitleColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContactTitleColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.AddressColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CityColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PostalColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -40,9 +40,9 @@ Partial Class Form1
         '
         Me.Panel1.Controls.Add(Me.CurrentCustomerButton)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 395)
+        Me.Panel1.Location = New System.Drawing.Point(0, 269)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(800, 55)
+        Me.Panel1.Size = New System.Drawing.Size(1041, 55)
         Me.Panel1.TabIndex = 0
         '
         'CurrentCustomerButton
@@ -57,12 +57,14 @@ Partial Class Form1
         '
         'DataGridView1
         '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompanyColumn, Me.ContactNameColumn, Me.ContactTitleColumn, Me.AddressColumn, Me.CityColumn, Me.PostalColumn, Me.CountryColumn})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(800, 395)
+        Me.DataGridView1.Size = New System.Drawing.Size(1041, 269)
         Me.DataGridView1.TabIndex = 1
         '
         'CompanyColumn
@@ -82,6 +84,8 @@ Partial Class Form1
         Me.ContactTitleColumn.DataPropertyName = "ContactTitle"
         Me.ContactTitleColumn.HeaderText = "Title"
         Me.ContactTitleColumn.Name = "ContactTitleColumn"
+        Me.ContactTitleColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ContactTitleColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
         'AddressColumn
         '
@@ -113,12 +117,12 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1041, 324)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "View/Sort/Edit (no add or delete)"
         Me.Panel1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -127,12 +131,12 @@ Partial Class Form1
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents CurrentCustomerButton As Button
     Friend WithEvents CompanyColumn As DataGridViewTextBoxColumn
     Friend WithEvents ContactNameColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactTitleColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContactTitleColumn As DataGridViewComboBoxColumn
     Friend WithEvents AddressColumn As DataGridViewTextBoxColumn
     Friend WithEvents CityColumn As DataGridViewTextBoxColumn
     Friend WithEvents PostalColumn As DataGridViewTextBoxColumn
     Friend WithEvents CountryColumn As DataGridViewComboBoxColumn
-    Friend WithEvents CurrentCustomerButton As Button
 End Class

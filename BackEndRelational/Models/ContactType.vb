@@ -12,8 +12,6 @@ Partial Public Class ContactType
 
     <Key>
     Public Property ContactTypeIdentifier As Integer
-
     Public Property ContactTitle As String
-
     Public Overridable Property Customers As ICollection(Of Customer)
 End Class

@@ -16,6 +16,9 @@ Public Class NorthWindOperations
     Public Function CountryList() As List(Of Country)
         Return _NorthWindContext.Countries.ToList()
     End Function
+    Public Function ContactTypeList() As List(Of ContactType)
+        Return _NorthWindContext.ContactTypes.ToList()
+    End Function
     ''' <summary>
     ''' Read view/projection asynchronously, note the use
     ''' of inner ToListAsync which on larger operations can
@@ -57,6 +60,31 @@ Public Class NorthWindOperations
                     .CountryIdentifier = customer.CountryIdentifier,
                     .CountryName = customer.Country.CountryName
                 }).ToList()
+
+        Return customerData
+
+    End Function
+    Public Function CustomerFirstOrDefault(customerIdentifier As Integer) As CustomerEntity
+
+        Dim customerData = (
+                From customer In _NorthWindContext.Customers
+                Where customer.CustomerIdentifier = customerIdentifier
+                Join contactType In _NorthWindContext.ContactTypes On customer.ContactTypeIdentifier Equals contactType.ContactTypeIdentifier
+                Join contact In _NorthWindContext.Contacts On customer.ContactIdentifier Equals contact.ContactIdentifier
+                Select New CustomerEntity With {
+                .CustomerIdentifier = customer.CustomerIdentifier,
+                .CompanyName = customer.CompanyName,
+                .ContactIdentifier = customer.ContactIdentifier,
+                .FirstName = contact.FirstName,
+                .LastName = contact.LastName,
+                .ContactTypeIdentifier = contactType.ContactTypeIdentifier,
+                .ContactTitle = contactType.ContactTitle,
+                .Address = customer.Street,
+                .City = customer.City,
+                .PostalCode = customer.PostalCode,
+                .CountryIdentifier = customer.CountryIdentifier,
+                .CountryName = customer.Country.CountryName
+                }).FirstOrDefault()
 
         Return customerData
 
