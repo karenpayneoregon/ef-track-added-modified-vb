@@ -1,6 +1,6 @@
-# Entity Framework 6 Track Created and Modified fields (VB.NET)
+# Entity Framework 6 and Entity Framework Core code samples
 
-
+The code samples presented within are for multiple articles and are a work in progress. All code works but in some cases the SQL to build databases and populate tables is ever changing, for instance FrontEndRelational and BackEndRelational code works but have not yet provided the database script.
 
 ### See also
 
