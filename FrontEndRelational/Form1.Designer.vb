@@ -28,7 +28,6 @@ Partial Class Form1
         Me.CompanyColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FirstNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LastNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ContactNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContactTitleColumn = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.AddressColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CityColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -44,7 +43,7 @@ Partial Class Form1
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 269)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1187, 55)
+        Me.Panel1.Size = New System.Drawing.Size(1049, 55)
         Me.Panel1.TabIndex = 0
         '
         'CurrentCustomerButton
@@ -62,11 +61,11 @@ Partial Class Form1
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompanyColumn, Me.FirstNameColumn, Me.LastNameColumn, Me.ContactNameColumn, Me.ContactTitleColumn, Me.AddressColumn, Me.CityColumn, Me.PostalColumn, Me.CountryColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompanyColumn, Me.FirstNameColumn, Me.LastNameColumn, Me.ContactTitleColumn, Me.AddressColumn, Me.CityColumn, Me.PostalColumn, Me.CountryColumn})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(1187, 269)
+        Me.DataGridView1.Size = New System.Drawing.Size(1049, 269)
         Me.DataGridView1.TabIndex = 1
         '
         'CompanyColumn
@@ -86,12 +85,6 @@ Partial Class Form1
         Me.LastNameColumn.DataPropertyName = "LastName"
         Me.LastNameColumn.HeaderText = "Last name"
         Me.LastNameColumn.Name = "LastNameColumn"
-        '
-        'ContactNameColumn
-        '
-        Me.ContactNameColumn.DataPropertyName = "ContactName"
-        Me.ContactNameColumn.HeaderText = "Contact"
-        Me.ContactNameColumn.Name = "ContactNameColumn"
         '
         'ContactTitleColumn
         '
@@ -131,7 +124,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1187, 324)
+        Me.ClientSize = New System.Drawing.Size(1049, 324)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "Form1"
@@ -149,7 +142,6 @@ Partial Class Form1
     Friend WithEvents CompanyColumn As DataGridViewTextBoxColumn
     Friend WithEvents FirstNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents LastNameColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ContactNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents ContactTitleColumn As DataGridViewComboBoxColumn
     Friend WithEvents AddressColumn As DataGridViewTextBoxColumn
     Friend WithEvents CityColumn As DataGridViewTextBoxColumn

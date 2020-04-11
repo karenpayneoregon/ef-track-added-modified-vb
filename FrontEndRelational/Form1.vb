@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel
 Imports BackEndRelational
-Imports Equin.ApplicationFramework
 Imports Validators
 
 ''' <summary>
@@ -81,12 +80,11 @@ Public Class Form1
     Private Sub CurrentCustomerButton_Click(sender As Object, e As EventArgs) Handles CurrentCustomerButton.Click
         Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
 
-        customer.FirstName = customer.FirstName & "111"
-        'MessageBox.Show(
-        '    $"Company: {customer.CompanyName}{Environment.NewLine}" &
-        '    $"Primary key: {customer.CustomerIdentifier}{Environment.NewLine}" &
-        '    $"Contact key: {customer.ContactIdentifier}{Environment.NewLine}" &
-        '    $"Country key: {customer.CountryIdentifier}")
+        MessageBox.Show(
+            $"Company: {customer.CompanyName}{Environment.NewLine}" &
+            $"Primary key: {customer.CustomerIdentifier}{Environment.NewLine}" &
+            $"Contact key: {customer.ContactIdentifier}{Environment.NewLine}" &
+            $"Country key: {customer.CountryIdentifier}")
 
     End Sub
     ''' <summary>
@@ -141,8 +139,6 @@ Public Class Form1
                         _customerView.Item(_customerBindingSource.Position) = originalCustomer
 
                     Else
-
-                        console.WriteLine(currentCustomer.FirstName)
                         operations.Context.SaveChanges()
                     End If
                 End If
@@ -150,11 +146,29 @@ Public Class Form1
 
         End If
     End Sub
-
+    ''' <summary>
+    ''' Since first and last name belong to Contact table and not Customer the ListChanged event
+    ''' will be unaware of the changes since Customer only knows about the Contact primary key.
+    ''' 
+    ''' This code executes when a cells is edited belonging to first or last name properties.
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+        '
+        ' Don't fire when loading the DataGridView
+        '
         If DataGridView1.DataSource IsNot Nothing Then
+            '
+            ' If first or last name save changes, no check to see if there are actual
+            ' changes.
+            '
             If DataGridView1.Columns(e.ColumnIndex).Name = "FirstNameColumn" OrElse DataGridView1.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
-
+                '
+                ' Get current customer for the Contact key, find the Contact
+                ' and update first or last name
+                '
                 Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
                 Dim contact = operations.Context.Contacts.FirstOrDefault(Function(c) c.ContactIdentifier = CInt(customer.ContactIdentifier))
 
