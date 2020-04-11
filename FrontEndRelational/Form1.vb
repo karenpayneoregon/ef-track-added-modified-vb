@@ -81,11 +81,12 @@ Public Class Form1
     Private Sub CurrentCustomerButton_Click(sender As Object, e As EventArgs) Handles CurrentCustomerButton.Click
         Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
 
-        MessageBox.Show(
-            $"Company: {customer.CompanyName}{Environment.NewLine}" &
-            $"Primary key: {customer.CustomerIdentifier}{Environment.NewLine}" &
-            $"Contact key: {customer.ContactIdentifier}{Environment.NewLine}" &
-            $"Country key: {customer.CountryIdentifier}")
+        customer.FirstName = customer.FirstName & "111"
+        'MessageBox.Show(
+        '    $"Company: {customer.CompanyName}{Environment.NewLine}" &
+        '    $"Primary key: {customer.CustomerIdentifier}{Environment.NewLine}" &
+        '    $"Contact key: {customer.ContactIdentifier}{Environment.NewLine}" &
+        '    $"Country key: {customer.CountryIdentifier}")
 
     End Sub
     ''' <summary>
@@ -140,11 +141,34 @@ Public Class Form1
                         _customerView.Item(_customerBindingSource.Position) = originalCustomer
 
                     Else
+
+                        console.WriteLine(currentCustomer.FirstName)
                         operations.Context.SaveChanges()
                     End If
                 End If
             End If
 
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+        If DataGridView1.DataSource IsNot Nothing Then
+            If DataGridView1.Columns(e.ColumnIndex).Name = "FirstNameColumn" OrElse DataGridView1.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
+
+                Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
+                Dim contact = operations.Context.Contacts.FirstOrDefault(Function(c) c.ContactIdentifier = CInt(customer.ContactIdentifier))
+
+                If DataGridView1.Columns(e.ColumnIndex).Name = "FirstNameColumn" Then
+                    contact.FirstName = CStr(DataGridView1.Rows(e.RowIndex).Cells("FirstNameColumn").Value)
+                End If
+
+                If DataGridView1.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
+                    contact.LastName = CStr(DataGridView1.Rows(e.RowIndex).Cells("LastNameColumn").Value)
+                End If
+
+                operations.Context.SaveChanges()
+
+            End If
         End If
     End Sub
 End Class

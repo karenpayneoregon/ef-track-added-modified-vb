@@ -13,7 +13,7 @@ Partial Public Class Customer
             Return Function(customer) New CustomerEntity() With {
                 .CustomerIdentifier = customer.CustomerIdentifier,
                 .CompanyName = customer.CompanyName,
-                .Address = customer.Street,
+                .Street = customer.Street,
                 .City = customer.City,
                 .PostalCode = customer.PostalCode,
                 .ContactTypeIdentifier = customer.ContactTypeIdentifier.Value,

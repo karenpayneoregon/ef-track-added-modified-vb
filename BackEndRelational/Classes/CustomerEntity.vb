@@ -95,7 +95,7 @@ Public Class CustomerEntity
         End Set
     End Property
 
-    Public Property Address() As String
+    Public Property Street() As String
         Get
             Return _address1
         End Get

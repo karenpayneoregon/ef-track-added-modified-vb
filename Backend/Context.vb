@@ -3,12 +3,13 @@ Imports System.Data.Entity
 Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Data.Entity.Infrastructure
 Imports System.Linq
+Imports System.Data.Entity.Core.Objects
 
 Partial Public Class Context
     Inherits DbContext
 
     Public Sub New()
-        MyBase.New("name=Context") ' or secondary connection string
+        MyBase.New("name=ContextKaren") ' or secondary connection string
     End Sub
     Public Sub New(ConnectionString As String)
         MyBase.New(ConnectionString)
@@ -18,9 +19,14 @@ Partial Public Class Context
 
     Protected Overrides Sub OnModelCreating(modelBuilder As DbModelBuilder)
     End Sub
+
     ''' <summary>
     ''' Responsible for setting created, last updated
     ''' and soft delete property before SaveChanges or SaveChangesAsync
+    ''' 
+    ''' 3/20/2020 altered logic to filter tractable that they must inherit
+    ''' from BaseEntity so that if another model without the proper columns
+    ''' does not throw a runtime exception.
     ''' </summary>
     Private Sub BeforeSave()
 
@@ -30,22 +36,34 @@ Partial Public Class Context
 
             If currentEntry.State = EntityState.Added OrElse currentEntry.State = EntityState.Modified Then
 
-                currentEntry.Property("LastUpdated").CurrentValue = Date.Now
-                currentEntry.Property("LastUser").CurrentValue = Environment.UserName
+                Dim entityType As Type = ObjectContext.GetObjectType(currentEntry.Entity.GetType())
 
-                If TypeOf currentEntry.Entity Is Contact1 AndAlso currentEntry.State = EntityState.Added Then
-                    currentEntry.Property("CreatedAt").CurrentValue = Date.Now
-                    currentEntry.Property("CreatedBy").CurrentValue = Environment.UserName
+                If entityType.IsSubclassOf(GetType(BaseEntity)) Then
+                    currentEntry.Property("LastUpdated").CurrentValue = Date.Now
+                    currentEntry.Property("LastUser").CurrentValue = Environment.UserName
+
+                    If currentEntry.State = EntityState.Added Then
+                        currentEntry.Property("CreatedAt").CurrentValue = Date.Now
+                        currentEntry.Property("CreatedBy").CurrentValue = Environment.UserName
+                    End If
                 End If
+
 
             ElseIf currentEntry.State = EntityState.Deleted Then
 
-                currentEntry.Property("LastUpdated").CurrentValue = Date.Now
-                currentEntry.Property("LastUser").CurrentValue = Environment.UserName
+                Dim entityType As Type = ObjectContext.GetObjectType(currentEntry.Entity.GetType())
 
-                ' Change state to modified and set delete flag
-                currentEntry.State = EntityState.Modified
-                CType(currentEntry.Entity, BaseEntity).IsDeleted = True
+                If entityType.IsSubclassOf(GetType(BaseEntity)) Then
+
+                    currentEntry.Property("LastUpdated").CurrentValue = Date.Now
+                    currentEntry.Property("LastUser").CurrentValue = Environment.UserName
+
+                    ' Change state to modified and set delete flag
+                    currentEntry.State = EntityState.Modified
+                    CType(currentEntry.Entity, BaseEntity).IsDeleted = True
+
+                End If
+
 
             End If
 
