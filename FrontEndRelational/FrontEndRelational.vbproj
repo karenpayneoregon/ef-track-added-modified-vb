@@ -91,7 +91,8 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LanguageExtensions\BindingSourceExtensions.vb" />
+    <Compile Include="LanguageExtensions\SortableBindingListExtensions.vb" />
+    <Compile Include="Classes\CompanyItem.vb" />
     <Compile Include="LanguageExtensions\DataGridViewExtensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

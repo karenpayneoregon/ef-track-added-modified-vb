@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BackEndRelational
+Imports FrontEndRelational.LanguageExtensions
 Imports Validators
 
 ''' <summary>
@@ -9,7 +10,7 @@ Public Class Form1
     Private operations As New NorthWindOperations
 
     WithEvents _customerView As SortableBindingList(Of CustomerEntity)
-    WithEvents _customerBindingSource As New BindingSource
+    Private _customerBindingSource As New BindingSource
 
     Public Sub New()
         InitializeComponent()
@@ -24,13 +25,14 @@ Public Class Form1
         '
         Dim customerEntities As List(Of CustomerEntity) = Await operations.AllCustomersAsync()
 
+
         '
         ' Setup custom BindingList which provides sorting which
         ' is not supported using a BindingSource alone
         '
         _customerView = New SortableBindingList(Of CustomerEntity)(customerEntities)
         _customerBindingSource.DataSource = _customerView
-
+        _customerBindingSource.Sort = "CountryName"
 
         '
         ' Setup DataGridViewComboBox column for country data
@@ -42,7 +44,7 @@ Public Class Form1
         CountryColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
 
         '
-        ' Setup DataGridViewComboBox column for contact typoe data
+        ' Setup DataGridViewComboBox column for contact type data
         '
         ContactTitleColumn.DisplayMember = "ContactTitle"
         ContactTitleColumn.ValueMember = "ContactTypeIdentifier"
@@ -53,6 +55,20 @@ Public Class Form1
         DataGridView1.DataSource = _customerBindingSource
 
         DataGridView1.ExpandColumns()
+
+        '
+        ' Both Find methods work
+        '
+
+        'Dim entity = _customerView.FindCompanyByName("Piccolo und mehr")
+        'If entity IsNot Nothing Then
+        '    _customerBindingSource.Position = entity.RowIndex
+        'End If
+
+        Dim entity = _customerView.FindCompanyByContactName("Catherine", "Dewey")
+        If entity IsNot Nothing Then
+            _customerBindingSource.Position = entity.RowIndex
+        End If
 
         '
         ' This is done so that if the data is slow loading the button is not clicked.
@@ -146,6 +162,7 @@ Public Class Form1
 
         End If
     End Sub
+    Private ContactColumNames As String() = {"FirstNameColumn", "LastNameColumn"}
     ''' <summary>
     ''' Since first and last name belong to Contact table and not Customer the ListChanged event
     ''' will be unaware of the changes since Customer only knows about the Contact primary key.
@@ -164,7 +181,7 @@ Public Class Form1
             ' If first or last name save changes, no check to see if there are actual
             ' changes.
             '
-            If DataGridView1.Columns(e.ColumnIndex).Name = "FirstNameColumn" OrElse DataGridView1.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
+            If ContactColumNames.Contains(DataGridView1.Columns(e.ColumnIndex).Name) Then
                 '
                 ' Get current customer for the Contact key, find the Contact
                 ' and update first or last name
