@@ -84,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\SortableBindingList.vb" />
+    <Compile Include="Controls\MyToolStripTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +94,8 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Helpers\Dialogs.vb" />
+    <Compile Include="LanguageExtensions\CueBannerTextCodeExtensions.vb" />
     <Compile Include="LanguageExtensions\SortableBindingListExtensions.vb" />
     <Compile Include="Classes\CompanyItem.vb" />
     <Compile Include="LanguageExtensions\DataGridViewExtensions.vb" />

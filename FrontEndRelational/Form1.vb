@@ -70,6 +70,10 @@ Public Class Form1
             _customerBindingSource.Position = entity.RowIndex
         End If
 
+        BindingNavigator1.BindingSource = _customerBindingSource
+
+        CompanyNameFindToolStripTextBox.CueBanner = "enter company name"
+
         '
         ' This is done so that if the data is slow loading the button is not clicked.
         '
@@ -201,6 +205,37 @@ Public Class Form1
 
             End If
         End If
+    End Sub
+    ''' <summary>
+    ''' Add new entity
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub BindingNavigatorAddNewItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorAddNewItem.Click
+        MessageBox.Show("Coming soon")
+    End Sub
+    ''' <summary>
+    ''' delete current entity
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub BindingNavigatorDeleteItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorDeleteItem.Click
+        If _customerView.Count > 0 Then
+            Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
+            If My.Dialogs.Question($"Remove {customer.CompanyName}?") Then
+                MessageBox.Show("Delete: Yes, This will be covered in part 2 of this series")
+            Else
+                MessageBox.Show("Delete: No, This will be covered in part 2 of this series")
+            End If
+        End If
+    End Sub
+    ''' <summary>
+    ''' This will be a starts with find
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub FindByCompanyNameToolStripButton_Click(sender As Object, e As EventArgs) Handles FindByCompanyNameToolStripButton.Click
+        ' TODO
     End Sub
 End Class
 
