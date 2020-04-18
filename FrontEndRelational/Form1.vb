@@ -15,7 +15,7 @@ Public Class Form1
     Public Sub New()
         InitializeComponent()
 
-        DataGridView1.AutoGenerateColumns = False
+        CustomersDataGridView.AutoGenerateColumns = False
 
     End Sub
     Private Async Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
@@ -52,9 +52,18 @@ Public Class Form1
         ContactTitleColumn.DataSource = operations.ContactTypeList()
         ContactTitleColumn.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
 
-        DataGridView1.DataSource = _customerBindingSource
+        CustomersDataGridView.DataSource = _customerBindingSource
 
-        DataGridView1.ExpandColumns()
+        '
+        ' Optional: Ensures all data in all columns are visible
+        '
+        CustomersDataGridView.ExpandColumns()
+
+
+        '
+        ' Optional: Ensures the first column is always visible
+        '
+        CustomersDataGridView.Columns(0).Frozen = True
 
         '
         ' Both Find methods work
@@ -72,6 +81,9 @@ Public Class Form1
 
         BindingNavigator1.BindingSource = _customerBindingSource
 
+        '
+        ' This tells the user what is expected
+        '
         CompanyNameFindToolStripTextBox.CueBanner = "enter company name"
 
         '
@@ -82,11 +94,11 @@ Public Class Form1
     End Sub
     ''' <summary>
     ''' A good way to figure out errors occuring in the DataGridView, for
-    ''' production use a log file.
+    ''' production use a log file while writing code in the IDE, not production.
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
+    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles CustomersDataGridView.DataError
 #If DEBUG Then
         Console.WriteLine(e.Exception.Message)
         e.Cancel = True
@@ -118,22 +130,39 @@ Public Class Form1
 
         If e.PropertyDescriptor IsNot Nothing Then
 
+            '
+            ' Get current customer in current DataGridView row
+            '
             Dim currentCustomer As CustomerEntity =
                     _customerView.CurrentCustomer(_customerBindingSource.Position)
 
+            '
+            ' Assert if there are changes to the current row in the DataGridView
+            '
             If e.ListChangedType = ListChangedType.ItemChanged Then
 
+                '
+                ' Get data residing in the database table
+                '
                 Dim customerItem = operations.Context.Customers.
                         FirstOrDefault(
                             Function(customer) customer.CustomerIdentifier =
                                            currentCustomer.CustomerIdentifier)
 
                 If customerItem IsNot Nothing Then
+
                     Dim customerEntry = operations.Context.Entry(customerItem)
                     customerEntry.CurrentValues.SetValues(currentCustomer)
 
+                    '
+                    ' Setup validation on current row data
+                    '
                     Dim validation = ValidationHelper.ValidateEntity(customerItem)
 
+
+                    '
+                    ' If there are validation error present them to the user
+                    '
                     If validation.HasViolations Then
 
                         Dim errorItems = String.Join(
@@ -176,16 +205,16 @@ Public Class Form1
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+    Private Sub DataGridView1_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles CustomersDataGridView.CellValueChanged
         '
-        ' Don't fire when loading the DataGridView
+        ' Don't fire when loading the DataGridView, wait until the DataGridView has data
         '
-        If DataGridView1.DataSource IsNot Nothing Then
+        If CustomersDataGridView.DataSource IsNot Nothing Then
             '
             ' If first or last name save changes, no check to see if there are actual
             ' changes.
             '
-            If ContactColumNames.Contains(DataGridView1.Columns(e.ColumnIndex).Name) Then
+            If ContactColumNames.Contains(CustomersDataGridView.Columns(e.ColumnIndex).Name) Then
                 '
                 ' Get current customer for the Contact key, find the Contact
                 ' and update first or last name
@@ -193,12 +222,12 @@ Public Class Form1
                 Dim customer As CustomerEntity = _customerView.CurrentCustomer(_customerBindingSource.Position)
                 Dim contact = operations.Context.Contacts.FirstOrDefault(Function(c) c.ContactIdentifier = CInt(customer.ContactIdentifier))
 
-                If DataGridView1.Columns(e.ColumnIndex).Name = "FirstNameColumn" Then
-                    contact.FirstName = CStr(DataGridView1.Rows(e.RowIndex).Cells("FirstNameColumn").Value)
+                If CustomersDataGridView.Columns(e.ColumnIndex).Name = "FirstNameColumn" Then
+                    contact.FirstName = CStr(CustomersDataGridView.Rows(e.RowIndex).Cells("FirstNameColumn").Value)
                 End If
 
-                If DataGridView1.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
-                    contact.LastName = CStr(DataGridView1.Rows(e.RowIndex).Cells("LastNameColumn").Value)
+                If CustomersDataGridView.Columns(e.ColumnIndex).Name = "LastNameColumn" Then
+                    contact.LastName = CStr(CustomersDataGridView.Rows(e.RowIndex).Cells("LastNameColumn").Value)
                 End If
 
                 operations.Context.SaveChanges()

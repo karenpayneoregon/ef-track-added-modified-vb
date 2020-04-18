@@ -48,10 +48,23 @@ Namespace LanguageExtensions
         ''' and extension method makes sense here than modify the SortableBindingList.
         ''' </remarks>
         <Extension>
-        Public Function FindCompanyByContactName(sender As SortableBindingList(Of CustomerEntity), firstName As String, lastName As String) As CompanyItem
+        Public Function FindCompanyByContactName(
+             sender As SortableBindingList(Of CustomerEntity),
+             firstName As String,
+             lastName As String) As CompanyItem
 
-            Return sender.Select(Function(customerEntity, index) New CompanyItem With {.RowIndex = index, .Entity = customerEntity}).
-                FirstOrDefault(Function(companyItem) companyItem.Entity.FirstName = firstName AndAlso companyItem.Entity.LastName = lastName)
+            Return sender.Select(
+                Function(customerEntity, index)
+
+                    Return New CompanyItem With {.RowIndex = index, .Entity = customerEntity}
+
+                End Function).
+                FirstOrDefault(
+                    Function(companyItem)
+
+                        Return companyItem.Entity.FirstName = firstName AndAlso companyItem.Entity.LastName = lastName
+
+                    End Function)
 
         End Function
 
