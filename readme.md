@@ -6,6 +6,12 @@ The code samples presented within are for multiple articles and are a work in pr
 
 [Microsoft TechNet article DataGridView/Entity Framework common operations part 1](https://social.technet.microsoft.com/wiki/contents/articles/53804.datagridviewentity-framework-common-operations-part-1.aspx)
 
+[DataGridView/Entity Framework common operations (Part 2)](https://social.technet.microsoft.com/wiki/contents/articles/53821.datagridviewentity-framework-common-operations-part-2.aspx)
+
+[DataGridView/Entity Framework common operations (Part 2 A)](https://social.technet.microsoft.com/wiki/contents/articles/53822.datagridviewentity-framework-common-operations-part-2-a.aspx)
+
+
+
 
 ### See also
 

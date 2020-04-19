@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations.Schema
 Imports System.Linq.Expressions
-Imports WindowsApp2.Classes
 
 Partial Public Class Customer
     <NotMapped>
