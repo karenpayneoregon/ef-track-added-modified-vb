@@ -67,6 +67,27 @@ Namespace LanguageExtensions
                     End Function)
 
         End Function
+        ''' <summary>
+        ''' Find first company name using starts with case insensitive 
+        ''' </summary>
+        ''' <param name="sender"></param>
+        ''' <param name="companyName"></param>
+        ''' <returns></returns>
+        <Extension()>
+        Public Function FindCompanyByNameStartsWith(sender As SortableBindingList(Of CustomerEntity), companyName As String) As CompanyItem
+            Return sender.Select(
+                Function(customerEntity, index)
 
+                    Return New CompanyItem With {.RowIndex = index, .Entity = customerEntity}
+
+                End Function).
+                FirstOrDefault(
+                    Function(item)
+                        Return item.Entity.CompanyName.StartsWith(companyName,
+                                StringComparison.InvariantCultureIgnoreCase)
+                    End Function)
+
+
+        End Function
     End Module
 End Namespace

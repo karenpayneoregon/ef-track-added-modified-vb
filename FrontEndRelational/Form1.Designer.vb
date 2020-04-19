@@ -50,6 +50,7 @@ Partial Class Form1
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.FindByCompanyNameToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.CompanyNameFindToolStripTextBox = New FrontEndRelational.MyToolStripTextBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.CustomersDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,6 +262,7 @@ Partial Class Form1
         Me.CompanyNameFindToolStripTextBox.CueBanner = Nothing
         Me.CompanyNameFindToolStripTextBox.Name = "CompanyNameFindToolStripTextBox"
         Me.CompanyNameFindToolStripTextBox.Size = New System.Drawing.Size(150, 25)
+        Me.CompanyNameFindToolStripTextBox.ToolTipText = "Use to find a company starting with text enter"
         '
         'Form1
         '
@@ -272,7 +274,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Panel1)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "View/Sort/Edit/Find  (no add, delete or filter - next part in this series)"
+        Me.Text = "Entity Framework Classic immediate updates"
         Me.Panel1.ResumeLayout(False)
         CType(Me.CustomersDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -309,4 +311,5 @@ Partial Class Form1
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents FindByCompanyNameToolStripButton As ToolStripButton
     Friend WithEvents CompanyNameFindToolStripTextBox As MyToolStripTextBox
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

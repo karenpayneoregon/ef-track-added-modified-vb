@@ -57,7 +57,7 @@ Public Class Form1
         '
         ' Optional: Ensures all data in all columns are visible
         '
-        CustomersDataGridView.ExpandColumns()
+        'CustomersDataGridView.ExpandColumns()
 
 
         '
@@ -74,22 +74,25 @@ Public Class Form1
         '    _customerBindingSource.Position = entity.RowIndex
         'End If
 
-        Dim entity = _customerView.FindCompanyByContactName("Catherine", "Dewey")
-        If entity IsNot Nothing Then
-            _customerBindingSource.Position = entity.RowIndex
-        End If
+        'Dim entity = _customerView.FindCompanyByContactName("Catherine", "Dewey")
+        'If entity IsNot Nothing Then
+        '    _customerBindingSource.Position = entity.RowIndex
+        'End If
+
 
         BindingNavigator1.BindingSource = _customerBindingSource
 
         '
         ' This tells the user what is expected
         '
-        CompanyNameFindToolStripTextBox.CueBanner = "enter company name"
+        CompanyNameFindToolStripTextBox.CueBanner = "company starts with"
 
         '
         ' This is done so that if the data is slow loading the button is not clicked.
         '
         CurrentCustomerButton.Enabled = True
+
+
 
     End Sub
     ''' <summary>
@@ -259,12 +262,15 @@ Public Class Form1
         End If
     End Sub
     ''' <summary>
-    ''' This will be a starts with find
+    ''' Find company using starts with
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub FindByCompanyNameToolStripButton_Click(sender As Object, e As EventArgs) Handles FindByCompanyNameToolStripButton.Click
-        ' TODO
+        Dim entity = _customerView.FindCompanyByNameStartsWith(CompanyNameFindToolStripTextBox.Text)
+        If entity IsNot Nothing Then
+            _customerBindingSource.Position = entity.RowIndex
+        End If
     End Sub
 End Class
 
