@@ -101,10 +101,10 @@ Partial Public Class NorthWindContext
         Dim test = DirectCast(Me, IObjectContextAdapter).
             ObjectContext.ObjectStateManager.
             GetObjectStateEntries(EntityState.Added).
-            Where(Function(e) e.IsRelationship).Select(Function(r) New With {
-                                                          Key .EntityKeyInfo = r.CurrentValues(0),
-                                                          Key .CollectionMemberKeyInfo = r.CurrentValues(1),
-                                                          Key r.State})
+            Where(Function(oes) oes.IsRelationship).Select(Function(oes) New With {
+                                                          Key .EntityKeyInfo = oes.CurrentValues(0),
+                                                          Key .CollectionMemberKeyInfo = oes.CurrentValues(1),
+                                                          Key oes.State})
 
 
 

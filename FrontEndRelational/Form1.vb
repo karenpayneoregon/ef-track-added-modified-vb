@@ -57,8 +57,7 @@ Public Class Form1
         '
         ' Optional: Ensures all data in all columns are visible
         '
-        'CustomersDataGridView.ExpandColumns()
-
+        CustomersDataGridView.ExpandColumns()
 
         '
         ' Optional: Ensures the first column is always visible
@@ -74,10 +73,10 @@ Public Class Form1
         '    _customerBindingSource.Position = entity.RowIndex
         'End If
 
-        'Dim entity = _customerView.FindCompanyByContactName("Catherine", "Dewey")
-        'If entity IsNot Nothing Then
-        '    _customerBindingSource.Position = entity.RowIndex
-        'End If
+        Dim entity = _customerView.FindCompanyByContactName("Catherine", "Dewey")
+        If entity IsNot Nothing Then
+            _customerBindingSource.Position = entity.RowIndex
+        End If
 
 
         BindingNavigator1.BindingSource = _customerBindingSource
